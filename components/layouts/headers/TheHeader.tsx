@@ -1,6 +1,7 @@
-
+// ** Next Imports
 import Link from 'next/link'
 
+// ** Components Imports
 import TheDropdownAuth from './TheDropdownAuth'
 import TheSearchMovie from './TheSearchMovie'
 

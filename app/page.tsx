@@ -1,3 +1,4 @@
+// ** Components Imports
 import HomeCarousel from '@/components/pages/home/carousel'
 
 export default function Home() {
