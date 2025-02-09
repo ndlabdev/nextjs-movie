@@ -30,7 +30,7 @@ function redirectToHome() {
 }
 
 export async function returnFetch(path: RequestInfo | URL, opt?: FetchOptions) {
-    const url = new URL(`${config.baseURL}${path}`)
+    const url = new URL(`${config.baseURL}${path}?language=en-US`)
     
     if (opt?.params) {
         Object.entries(opt.params).forEach(([key, value]) => {
@@ -41,14 +41,11 @@ export async function returnFetch(path: RequestInfo | URL, opt?: FetchOptions) {
     }
 
     try {
-        const token = getBearerTokenFromCookie();
-
         const response = await fetch(url.toString(), {
             ...opt,
-            credentials: 'include',
             headers: {
-                'Content-Type': 'application/json',
-                ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                accept: 'application/json',
+                Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN}`
             }
         })
 

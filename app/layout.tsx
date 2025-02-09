@@ -36,13 +36,16 @@ export default function RootLayout({
             <head />
             <body
                 className={clsx(
-                    'font-sans antialiased',
+                    'font-sans antialiased min-h-dvh text-white bg-stone-900',
                     fontSans.variable,
                 )}
             >
                 <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
                     <TheaHeader />
-                    {children}
+
+                    <div className='flex-auto'>
+                        {children}
+                    </div>
                 </Providers>
             </body>
         </html>
