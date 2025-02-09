@@ -1,6 +1,6 @@
 'use client'
 
-import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User} from '@heroui/react';
+import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User} from '@heroui/react'
 
 export default function TheDropdownAuth() {
     return (
@@ -10,7 +10,7 @@ export default function TheDropdownAuth() {
                     as="button"
                     avatarProps={{
                         isBordered: true,
-                        src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
+                        src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d'
                     }}
                     className="transition-transform"
                     description="@tonyreichert"
@@ -33,5 +33,5 @@ export default function TheDropdownAuth() {
                 </DropdownItem>
             </DropdownMenu>
         </Dropdown>
-    );
+    )
 }

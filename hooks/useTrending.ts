@@ -1,8 +1,8 @@
 // ** Third Party Imports
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query'
 
 // ** Lib Imports
-import { returnFetch } from '@/lib/return-fetch';
+import { returnFetch } from '@/lib/return-fetch'
 
 const queryKey = {
     index: 'trending-movies'

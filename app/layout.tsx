@@ -1,35 +1,42 @@
-import '@/styles/globals.css';
-import { Metadata, Viewport } from 'next';
-import clsx from 'clsx';
+// ** CSS Imports
+import '@/styles/globals.css'
 
-import { Providers } from './providers';
+// ** Next Imports
+import { Metadata, Viewport } from 'next'
+import clsx from 'clsx'
 
-import { siteConfig } from '@/config/site';
-import { fontSans } from '@/config/fonts';
-import TheaHeader from '@/components/layouts/headers/TheHeader';
+// ** Providers Imports
+import { Providers } from './providers'
+
+// ** Configs Imports
+import { siteConfig } from '@/configs/site'
+import { fontSans } from '@/configs/fonts'
+
+// ** Components Imports
+import TheaHeader from '@/components/layouts/headers/TheHeader'
 
 export const metadata: Metadata = {
     title: {
         default: siteConfig.name,
-        template: `%s - ${siteConfig.name}`,
+        template: `%s - ${siteConfig.name}`
     },
     description: siteConfig.description,
     icons: {
-        icon: '/favicon.ico',
-    },
-};
+        icon: '/favicon.ico'
+    }
+}
 
 export const viewport: Viewport = {
     themeColor: [
         { media: '(prefers-color-scheme: light)', color: 'white' },
-        { media: '(prefers-color-scheme: dark)', color: 'black' },
-    ],
-};
+        { media: '(prefers-color-scheme: dark)', color: 'black' }
+    ]
+}
 
 export default function RootLayout({
-    children,
+    children
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
     return (
         <html suppressHydrationWarning lang="en">
@@ -37,7 +44,7 @@ export default function RootLayout({
             <body
                 className={clsx(
                     'font-sans antialiased min-h-dvh text-white bg-stone-900',
-                    fontSans.variable,
+                    fontSans.variable
                 )}
             >
                 <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
@@ -49,5 +56,5 @@ export default function RootLayout({
                 </Providers>
             </body>
         </html>
-    );
+    )
 }

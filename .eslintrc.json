@@ -46,6 +46,14 @@
       "error",
       "single"
     ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
     "no-console": "warn",
     "react/prop-types": "off",
     "react/jsx-uses-react": "off",
@@ -83,8 +91,7 @@
             "group": "external",
             "position": "after"
           }
-        ],
-        "newlines-between": "always"
+        ]
       }
     ],
     "react/self-closing-comp": "warn",

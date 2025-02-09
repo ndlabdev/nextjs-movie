@@ -1,8 +1,8 @@
 
-import Link from 'next/link';
+import Link from 'next/link'
 
-import TheDropdownAuth from './TheDropdownAuth';
-import TheSearchMovie from './TheSearchMovie';
+import TheDropdownAuth from './TheDropdownAuth'
+import TheSearchMovie from './TheSearchMovie'
 
 const headerItem = [
     {
@@ -48,5 +48,5 @@ export default function TheHeader() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

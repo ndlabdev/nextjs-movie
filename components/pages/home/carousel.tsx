@@ -1,12 +1,12 @@
 'use client'
 
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
 import { useTrendingMovies } from '@/hooks/useTrending'
 
 export default function HomeCarousel() {
-    const { data } = useTrendingMovies();
+    const { data } = useTrendingMovies()
 
     return (
         <div className="container mx-auto p-3 @container md:p-6">

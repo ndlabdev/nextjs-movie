@@ -1,4 +1,4 @@
-import HomeCarousel from '@/components/pages/home/carousel';
+import HomeCarousel from '@/components/pages/home/carousel'
 
 export default function Home() {
     return (
@@ -7,5 +7,5 @@ export default function Home() {
                 <HomeCarousel />
             </div>
         </div>
-    );
+    )
 }

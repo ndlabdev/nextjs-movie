@@ -7,5 +7,5 @@ export default function TheSearchMovie() {
         <form className='flex max-w-xl flex-auto items-center rounded text max-md:hidden'>
             <Input placeholder='Search for movies, tv shows and people...' variant='flat' />
         </form>
-    );
+    )
 }

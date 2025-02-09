@@ -1,10 +1,11 @@
-'use client';
+'use client'
 
-import { useEffect } from 'react';
+// ** React Imports
+import { useEffect } from 'react'
 
 export default function Error({
     error,
-    reset,
+    reset
 }: {
   error: Error;
   reset: () => void;
@@ -12,8 +13,8 @@ export default function Error({
     useEffect(() => {
     // Log the error to an error reporting service
     /* eslint-disable no-console */
-        console.error(error);
-    }, [error]);
+        console.error(error)
+    }, [error])
 
     return (
         <div>
@@ -24,8 +25,8 @@ export default function Error({
                     () => reset()
                 }
             >
-        Try again
+                Try again
             </button>
         </div>
-    );
+    )
 }
