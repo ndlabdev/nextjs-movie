@@ -35,7 +35,7 @@ export default function TheHeader() {
                         {headerItem.map(item => (
                             <Link
                                 key={item.href}
-                                className="whitespace-nowrap flex items-center justify-start gap-2 opacity-90 hover:underline hover:opacity-100 outline-none focus-visible:ring-2 relative"
+                                className="whitespace-nowrap flex items-center justify-start gap-2 opacity-90 hover:underline hover:opacity-100 outline-none focus-visible:ring-2 relative font-semibold"
                                 href={item.href}
                             >
                                 {item.title}

@@ -9,9 +9,6 @@ export default function Home() {
                 <div className="container mx-auto p-3 @container md:p-6">
                     <HomeCarousel />
                     <HomeMovieGenres />
-                    <HomeMovieGenres />
-                    <HomeMovieGenres />
-                    <HomeMovieGenres />
                 </div>
             </div>
         </div>

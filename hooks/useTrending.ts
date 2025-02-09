@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query'
 
 // ** Lib Imports
 import { returnFetch } from '@/lib/return-fetch'
+
+// ** Types Imports
 import { ITrendingMovies } from '@/types/trending-movies'
 
 const queryKey = {
