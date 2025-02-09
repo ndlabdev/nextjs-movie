@@ -4,11 +4,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-// ** Next Imports
+// ** React Imports
 import { useState } from 'react'
 
 // ** HeroUI Imports
-import {Button} from '@heroui/react'
+import { Button } from '@heroui/react'
 
 // ** Icons Imports
 import { Play, Star, ChevronLeft, ChevronRight } from 'lucide-react'

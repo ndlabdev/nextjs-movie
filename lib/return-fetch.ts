@@ -22,7 +22,7 @@ export async function returnFetch(path: RequestInfo | URL, opt?: FetchOptions) {
             ...opt,
             headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN}`
+                Authorization: `Bearer ${config.tmdbToken}`
             }
         })
     } catch (err) {
