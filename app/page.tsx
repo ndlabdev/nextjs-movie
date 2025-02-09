@@ -1,11 +1,18 @@
 // ** Components Imports
 import HomeCarousel from '@/components/pages/home/carousel'
+import HomeMovieGenres from '@/components/pages/home/movie-genres'
 
 export default function Home() {
     return (
         <div className="relative min-h-[1000px] overflow-hidden">
             <div className="pb-6">
-                <HomeCarousel />
+                <div className="container mx-auto p-3 @container md:p-6">
+                    <HomeCarousel />
+                    <HomeMovieGenres />
+                    <HomeMovieGenres />
+                    <HomeMovieGenres />
+                    <HomeMovieGenres />
+                </div>
             </div>
         </div>
     )
