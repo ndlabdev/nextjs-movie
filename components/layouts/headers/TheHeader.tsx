@@ -11,8 +11,8 @@ const headerItem = [
         href: '/movies'
     },
     {
-        title: 'TV Shows',
-        href: '/series'
+        title: 'TV Series',
+        href: '/tv-series'
     },
     {
         title: 'Watchlist',

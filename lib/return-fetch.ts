@@ -3,7 +3,7 @@ import config from '@/configs/index'
 
 // ** Types
 interface FetchOptions extends RequestInit {
-    params?: Record<string, string | number | string[] | undefined>
+    params?: Record<string, string | number | string[] | unknown | undefined>
 }
 
 export async function returnFetch(path: RequestInfo | URL, opt?: FetchOptions) {

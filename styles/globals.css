@@ -6,6 +6,10 @@
     .content-carousel {
         grid-auto-columns: calc((100% - (var(--nVisibleItems, 1) - 1) * 24px) / var(--nVisibleItems, 1));
     }
+
+    .grid-cols-\[repeat\(var\(--nVisibleItems\)\,minmax\(0\,1fr\)\)\] {
+        grid-template-columns: repeat(var(--nVisibleItems),minmax(0,1fr))
+    }
   
     .content-grid-landscape {
         --nVisibleItems: 1
@@ -32,6 +36,58 @@
     @container (min-width: 1200px) {
         .content-grid-landscape {
             --nVisibleItems: 4
+        }
+    }
+
+    .content-grid-portrait {
+        --nVisibleItems: 1
+    }
+    
+    @media (min-width: 280px) {
+        .content-grid-portrait {
+            --nVisibleItems: 2
+        }
+    }
+    
+    @media (min-width: 786px) {
+        .content-grid-portrait {
+            --nVisibleItems: 3
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .content-grid-portrait {
+            --nVisibleItems: 4
+        }
+    }
+    
+    @media (min-width: 1280px) {
+        .content-grid-portrait {
+            --nVisibleItems: 6
+        }
+    }
+    
+    @container (min-width: 400px) {
+        .content-grid-portrait {
+            --nVisibleItems: 3
+        }
+    }
+    
+    @container (min-width: 600px) {
+        .content-grid-portrait {
+            --nVisibleItems: 4
+        }
+    }
+    
+    @container (min-width: 900px) {
+        .content-grid-portrait {
+            --nVisibleItems: 5
+        }
+    }
+    
+    @container (min-width: 1200px) {
+        .content-grid-portrait {
+            --nVisibleItems: 6
         }
     }
 }

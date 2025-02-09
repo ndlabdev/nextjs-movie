@@ -51,7 +51,9 @@ export default function RootLayout({
                     <TheaHeader />
 
                     <div className='flex-auto'>
-                        {children}
+                        <div className="relative min-h-[1000px] overflow-hidden">
+                            {children}
+                        </div>
                     </div>
                 </Providers>
             </body>
