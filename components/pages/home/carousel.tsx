@@ -20,29 +20,15 @@ export default function HomeCarousel() {
     const { data } = useTrendingMovies()
     const [currentIndex, setCurrentIndex] = useState(0)
 
-    if (!data?.results) return null
+    if (!data?.results?.length) return null
 
-    const movies = data.results || []
+    const movies = data.results
     const totalMovies = movies.length
+    const currentMovie = movies[currentIndex]
+    const upNextMovies = Array.from({ length: 3 }, (_, i) => movies[(currentIndex + i + 1) % totalMovies])
 
-    const nextMovie = () => {
-        setCurrentIndex((prev) => (prev + 1) % totalMovies)
-    }
-
-    const prevMovie = () => {
-        setCurrentIndex((prev) => (prev - 1 + totalMovies) % totalMovies)
-    }
-
-    const getUpNextMovies = () => {
-        const upNext = []
-
-        for (let i = 1; i <= 3; i++) {
-            const index = (currentIndex + i) % totalMovies
-
-            upNext.push(movies[index])
-        }
-
-        return upNext
+    const changeMovie = (direction: number) => {
+        setCurrentIndex((prev) => (prev + direction + totalMovies) % totalMovies)
     }
 
     return (
@@ -55,15 +41,15 @@ export default function HomeCarousel() {
                                 <div className='relative h-full w-full flex-shrink-0 snap-start snap-normal overflow-hidden rounded'>
                                     <div className='group relative h-full'>
                                         <Image
-                                            alt={movies[currentIndex].title}
+                                            alt={currentMovie.title}
                                             className="min-h-60 md:min-h-0 aspect-video object-cover block"
                                             decoding="async"
                                             draggable={false}
                                             height={720}
                                             loading="lazy"
                                             sizes="100vw"
-                                            src={`https://image.tmdb.org/t/p/w1280/${movies[currentIndex].backdrop_path}`}
-                                            title={movies[currentIndex].title}
+                                            src={`https://image.tmdb.org/t/p/w1280/${currentMovie.backdrop_path}`}
+                                            title={currentMovie.title}
                                             width={1280}
                                         />
                                     </div>
@@ -74,14 +60,14 @@ export default function HomeCarousel() {
                                         <div className='max-h-80 h-full aspect-poster z-10 shadow-md max-md:hidden group relative flex-shrink-0'>
                                             <Link href='/'>
                                                 <Image
-                                                    alt={movies[currentIndex].title}
+                                                    alt={currentMovie.title}
                                                     className='h-full w-full rounded bg-fg-base/4 object-cover block'
                                                     decoding='async'
                                                     draggable={false}
                                                     height={300}
                                                     loading="lazy"
-                                                    src={`https://image.tmdb.org/t/p/w300/${movies[currentIndex].poster_path}`}
-                                                    title={movies[currentIndex].title}
+                                                    src={`https://image.tmdb.org/t/p/w300/${currentMovie.poster_path}`}
+                                                    title={currentMovie.title}
                                                     width={300}
                                                 />
 
@@ -92,17 +78,17 @@ export default function HomeCarousel() {
                                         <div className='z-10 text-lg md:max-w-xl'>
                                             <div className='flex flex-shrink-0 items-center gap-1 whitespace-nowrap'>
                                                 <Star className='text-primary fill-primary' size={20} />
-                                                <span>{movies[currentIndex].vote_average} / 10</span>
+                                                <span>{currentMovie.vote_average} / 10</span>
                                             </div>
 
                                             <div className='my-2 text-2xl md:text-5xl'>
                                                 <Link className='text-inherit hover:underline outline-none focus-visible:underline overflow-x-hidden overflow-ellipsis transition-colors' href='/'>
-                                                    {movies[currentIndex].title}                                                    
+                                                    {currentMovie.title}                                                    
                                                 </Link>
                                             </div>
 
                                             <p className='max-md:hidden line-clamp-4'>
-                                                {movies[currentIndex].overview}
+                                                {currentMovie.overview}
                                             </p>
 
                                             <Button
@@ -124,7 +110,7 @@ export default function HomeCarousel() {
                                     isIconOnly
                                     size='lg'
                                     startContent={<ChevronLeft />}
-                                    onPress={prevMovie}
+                                    onPress={() => changeMovie(-1)}
                                 />
                             </div>
 
@@ -133,7 +119,7 @@ export default function HomeCarousel() {
                                     isIconOnly
                                     size='lg'
                                     startContent={<ChevronRight />}
-                                    onPress={nextMovie}
+                                    onPress={() => changeMovie(1)}
                                 />
                             </div>
                         </div>
@@ -143,7 +129,7 @@ export default function HomeCarousel() {
                         <h4 className='mb-3 text-lg font-semibold'>Up Next</h4>
 
                         <div className='flex flex-col gap-6'>
-                            {getUpNextMovies().map(movie => (
+                            {upNextMovies.map(movie => (
                                 <div key={movie.id} className='relative flex-auto'>
                                     <div className='group relative'>
                                         <Link href='/'>
