@@ -20,7 +20,7 @@ export default function BaseMovieCard({ movie }: Props) {
                     {movie.backdrop_path ? (
                         <Image
                             alt={movie.title}
-                            className="mb-1 rounded w-full aspect-video object-cover block aspect-poster"
+                            className="mb-1 rounded w-full aspect-video object-cover block"
                             decoding="async"
                             draggable={false}
                             height={500}
@@ -30,7 +30,7 @@ export default function BaseMovieCard({ movie }: Props) {
                             width={500}
                         />
                     ) : (
-                        <div className="h-full w-full rounded bg-black/40 object-cover flex items-center justify-center overflow-hidden aspect-poster">
+                        <div className="h-full w-full rounded bg-black/40 object-cover flex items-center justify-center overflow-hidden">
                             <Film />
                         </div>
                     )}
