@@ -16,7 +16,7 @@ export default function BaseMovieCard({ movie }: Props) {
     return (
         <>
             <div className='group relative'>
-                <Link href='/'>
+                <Link href={`/movies/${movie.id}`}>
                     {movie.backdrop_path ? (
                         <Image
                             alt={movie.title}
@@ -42,7 +42,7 @@ export default function BaseMovieCard({ movie }: Props) {
             <div className="mb-1 overflow-hidden overflow-ellipsis whitespace-nowrap text-sm">
                 <a
                     className="text-inherit hover:underline outline-none focus-visible:underline overflow-x-hidden overflow-ellipsis transition-colors text-base font-medium"
-                    href="/titles/781/venom-the-last-dance"
+                    href={`/movies/${movie.id}`}
                 >
                     {movie.title}
                 </a>

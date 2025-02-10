@@ -60,7 +60,7 @@ export default function HomeCarousel() {
                                     <div className='absolute left-0 h-full w-full bg-gradient-to-b from-black/40 max-md:top-0 md:bottom-0 md:h-3/4 md:bg-gradient-to-t md:from-black/100' />
 
                                     <div className='max-h-80 h-full aspect-poster z-10 shadow-md max-md:hidden group relative flex-shrink-0'>
-                                        <Link href='/'>
+                                        <Link href={`/movies/${currentMovie.id}`}>
                                             <Image
                                                 alt={currentMovie.title}
                                                 className='h-full w-full rounded bg-fg-base/4 object-cover block'
@@ -84,7 +84,7 @@ export default function HomeCarousel() {
                                         </div>
 
                                         <div className='my-2 text-2xl md:text-5xl'>
-                                            <Link className='text-inherit hover:underline outline-none focus-visible:underline overflow-x-hidden overflow-ellipsis transition-colors' href='/'>
+                                            <Link className='text-inherit hover:underline outline-none focus-visible:underline overflow-x-hidden overflow-ellipsis transition-colors' href={`/movies/${currentMovie.id}`}>
                                                 {currentMovie.title}                                                    
                                             </Link>
                                         </div>
