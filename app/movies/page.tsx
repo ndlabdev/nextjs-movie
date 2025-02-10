@@ -8,7 +8,7 @@ export default function TVSeries() {
         <div className="pb-6">
             <div className="container mx-auto p-3 @container md:p-6">
                 <section className="mb-5 md:mb-10">
-                    <BaseTitle title='TV Series'>
+                    <BaseTitle title='Movies'>
                         <TVSeriesSort />
                     </BaseTitle>
                 </section>
