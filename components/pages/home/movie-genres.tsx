@@ -104,7 +104,7 @@ const MovieCarousel = ({ categoryName, movies }: Props) => {
 
             <div
                 ref={carouselRef}
-                className="content-carousel relative w-full grid grid-flow-col grid-rows-[auto] overflow-x-auto overflow-y-hidden gap-6 snap-always snap-x snap-mandatory scroll-smooth content-grid-landscape"
+                className="content-carousel relative w-full grid grid-flow-col grid-rows-[auto] overflow-x-hidden overflow-y-hidden gap-6 snap-always snap-x snap-mandatory scroll-smooth content-grid-landscape"
             >
                 {movies.map((movie) => (
                     <div key={movie.id} className="snap-start snap-normal">
