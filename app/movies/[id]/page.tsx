@@ -200,9 +200,7 @@ export default function Movie() {
                                             <span>{item.author_details.rating} / 10</span>
                                         </div>
 
-                                        <div className='whitespace-break-spaces'>
-                                            {item.content}
-                                        </div>
+                                        <div dangerouslySetInnerHTML={{ __html: item.content }} className='whitespace-break-spaces' />
                                     </div>
                                 </div>
                             ))}
