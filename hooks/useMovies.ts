@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query'
 import { returnFetch } from '@/lib/return-fetch'
 
 // ** Types Imports
+import { IMovies } from '@/types/movies'
 
 const queryKey = {
     movieDetail: 'movie-detail'
@@ -18,7 +19,7 @@ const queryKey = {
 export const useDiscoverDetail = () => {
     const params = useParams()
 
-    return useQuery<ITrendingMovies>({
+    return useQuery<IMovies>({
         queryKey: [queryKey.movieDetail, params.id],
         queryFn: () => returnFetch(`/movie/${params.id}`, {
             params: {
