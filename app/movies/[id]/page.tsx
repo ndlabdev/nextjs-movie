@@ -155,8 +155,10 @@ export default function Movie() {
                     </ul>
 
                     {}
-                    <section className="mb-4 md:mb-7 mt-12">
-                        <BaseTitle title='Images' />
+                    <section className="mt-12">
+                        <div className='mb-5'>
+                            <BaseTitle title='Images' />
+                        </div>
                         
                         <div className='grid grid-cols-3 gap-12 md:grid-cols-5 md:gap-6'>
                             <Image
