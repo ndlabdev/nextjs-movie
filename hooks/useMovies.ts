@@ -12,39 +12,19 @@ import { returnFetch } from '@/lib/return-fetch'
 // ** Types Imports
 
 const queryKey = {
-    movieDetail: 'movie-detail',
-    movieImages: 'movie-images',
-    movieKeywords: 'movie-keywords'
+    movieDetail: 'movie-detail'
 }
 
 export const useDiscoverDetail = () => {
     const params = useParams()
 
-    const retrieve = useQuery<ITrendingMovies>({
+    return useQuery<ITrendingMovies>({
         queryKey: [queryKey.movieDetail, params.id],
         queryFn: () => returnFetch(`/movie/${params.id}`, {
             params: {
-                append_to_response: 'credits'
+                append_to_response: 'credits,keywords,images,reviews'
             }
         })
             .then((response) => response.json())
     })
-
-    const { data: images } = useQuery<ITrendingMovies>({
-        queryKey: [queryKey.movieImages, params.id],
-        queryFn: () => returnFetch(`/movie/${params.id}/images`)
-            .then((response) => response.json())
-    })
-
-    const { data: keywords } = useQuery<ITrendingMovies>({
-        queryKey: [queryKey.movieKeywords, params.id],
-        queryFn: () => returnFetch(`/movie/${params.id}/keywords`)
-            .then((response) => response.json())
-    })
-
-    return {
-        ...retrieve,
-        images,
-        keywords
-    }
 }

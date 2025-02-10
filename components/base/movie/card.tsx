@@ -8,6 +8,10 @@ import { Star, Film } from 'lucide-react'
 // ** Types Imports
 import { IMoviesResult } from '@/types/trending-movies'
 
+// ** Utils Imports
+import { showImage } from '@/utils/helpers'
+
+// ** Interface
 interface Props {
     movie: IMoviesResult
 }
@@ -25,7 +29,7 @@ export default function BaseMovieCard({ movie }: Props) {
                             draggable={false}
                             height={500}
                             loading="lazy"
-                            src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+                            src={showImage(movie.backdrop_path)}
                             title={movie.title}
                             width={500}
                         />

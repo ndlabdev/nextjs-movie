@@ -1,3 +1,6 @@
+// ** Configs Imports
+import config from '@/configs/index'
+
 export const formattedDate = (date: string) => {
     return new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(new Date(date))
 }
@@ -26,3 +29,5 @@ export const formatCurrency = (value: number, country = 'US') => {
 
     return new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(value)
 }
+
+export const showImage = (path: string, width = 300) => `${config.imageURL}/w${width}/${path}`

@@ -1,34 +1,33 @@
 'use client'
 
 // ** Next Imports
-// import Link from 'next/link'
+import NextLink from 'next/link'
 import Image from 'next/image'
 
 // ** Icons Imports
-import { Play, Plus } from 'lucide-react'
+import { Play, Plus, Star } from 'lucide-react'
 
 // ** HeroUI Imports
-import { Link, Button, Chip, Divider } from '@heroui/react'
+import { Link, Button, Chip, Divider, Avatar } from '@heroui/react'
 
 // ** Hooks Imports
 import { useDiscoverDetail } from '@/hooks/useMovies'
 
 // ** Utils Imports
-import { formattedDate, formatDuration, formatCurrency } from '@/utils/helpers'
+import { formattedDate, formatDuration, formatCurrency, showImage } from '@/utils/helpers'
 
 // ** Components Imports
 import BaseTitle from '@/components/base/title'
 
 export default function Movie() {
-    const { data, images, keywords } = useDiscoverDetail()
+    const { data } = useDiscoverDetail()
 
     if (!data) return null
 
-    console.log(data, images)
-
     const directors = data.credits.crew.filter(person => person.department === 'Directing').slice(0, 3)
     const writers = data.credits.crew.filter(person => person.department === 'Writing').slice(0, 3)
-    const keywordList = keywords?.keywords?.slice(0, 5) || []
+    const images = data.images.backdrops.slice(0, 5)
+    const keywordList = data.keywords?.keywords?.slice(0, 5) || []
 
     return (
         <div className="container mx-auto mt-6 px-3 md:mt-10 md:px-6">
@@ -43,7 +42,7 @@ export default function Movie() {
                                 draggable={false}
                                 height={300}
                                 loading="lazy"
-                                src={`https://image.tmdb.org/t/p/w300/${data.poster_path}`}
+                                src={showImage(data.poster_path)}
                                 title={data.title}
                                 width={300}
                             />
@@ -154,24 +153,59 @@ export default function Movie() {
                         </li>
                     </ul>
 
-                    {}
                     <section className="mt-12">
                         <div className='mb-5'>
                             <BaseTitle title='Images' />
                         </div>
                         
                         <div className='grid grid-cols-3 gap-12 md:grid-cols-5 md:gap-6'>
-                            <Image
-                                alt={data.title}
-                                className="aspect-square w-full cursor-pointer rounded object-cover"
-                                decoding="async"
-                                draggable={false}
-                                height={300}
-                                loading="lazy"
-                                src={`https://image.tmdb.org/t/p/w300/${data.poster_path}`}
-                                title={data.title}
-                                width={300}
-                            />
+                            {images.map(item => (
+                                <Image
+                                    key={item.file_path}
+                                    alt={data.title}
+                                    className="aspect-square w-full cursor-pointer rounded object-cover"
+                                    decoding="async"
+                                    draggable={false}
+                                    height={300}
+                                    loading="lazy"
+                                    src={showImage(item.file_path)}
+                                    title={data.title}
+                                    width={300}
+                                />
+                            ))}
+                        </div>
+                    </section>
+
+                    <section className="mt-12">
+                        <div className='mb-5'>
+                            <BaseTitle title={`Reviews (${data.reviews.total_results})`} />
+                        </div>
+                        
+                        <div className='space-y-4'>
+                            {data.reviews.results.map(item => (
+                                <div key={item.id} className='group flex min-h-20 items-start gap-4 rounded'>
+                                    <NextLink className='relative block overflow-hidden select-none flex-shrink-0 w-15 h-15 rounded-full' href='/'>
+                                        <Avatar size='lg' src={showImage(item.author_details.avatar_path)} />
+                                    </NextLink>
+
+                                    <div className='flex-auto'>
+                                        <div className='mb-1 flex items-center gap-2'>
+                                            <NextLink className='hover:underline flex items-center gap-2 text-base font-medium' href='/'>
+                                                {item.author}
+                                            </NextLink>
+                                        </div>
+
+                                        <div className="flex flex-shrink-0 items-center gap-1 whitespace-nowrap my-2">
+                                            <Star className='text-primary fill-primary' size={16} />
+                                            <span>{item.author_details.rating} / 10</span>
+                                        </div>
+
+                                        <div className='whitespace-break-spaces'>
+                                            {item.content}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </section>
                 </div>

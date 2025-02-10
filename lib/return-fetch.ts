@@ -7,7 +7,7 @@ interface FetchOptions extends RequestInit {
 }
 
 export async function returnFetch(path: RequestInfo | URL, opt?: FetchOptions) {
-    const url = new URL(`${config.baseURL}${path}?language=en-US`)
+    const url = new URL(`${config.baseURL}${path}`)
     
     if (opt?.params) {
         Object.entries(opt.params).forEach(([key, value]) => {

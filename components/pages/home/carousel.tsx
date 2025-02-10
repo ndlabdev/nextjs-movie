@@ -16,6 +16,9 @@ import { Play, Star, ChevronLeft, ChevronRight } from 'lucide-react'
 // ** Hooks Imports
 import { useTrendingMovies } from '@/hooks/useTrending'
 
+// ** Utils Imports
+import { showImage } from '@/utils/helpers'
+
 // ** Components Imports
 import BaseMovieCard from '@/components/base/movie/card'
 
@@ -50,7 +53,7 @@ export default function HomeCarousel() {
                                         height={720}
                                         loading="lazy"
                                         sizes="100vw"
-                                        src={`https://image.tmdb.org/t/p/w1280/${currentMovie.backdrop_path}`}
+                                        src={showImage(currentMovie.backdrop_path, 1280)}
                                         title={currentMovie.title}
                                         width={1280}
                                     />
@@ -68,7 +71,7 @@ export default function HomeCarousel() {
                                                 draggable={false}
                                                 height={300}
                                                 loading="lazy"
-                                                src={`https://image.tmdb.org/t/p/w300/${currentMovie.poster_path}`}
+                                                src={showImage(currentMovie.poster_path)}
                                                 title={currentMovie.title}
                                                 width={300}
                                             />

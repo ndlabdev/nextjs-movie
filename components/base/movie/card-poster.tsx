@@ -8,6 +8,10 @@ import { Star, Film } from 'lucide-react'
 // ** Types Imports
 import { IDiscover } from '@/types/discover'
 
+// ** Utils Imports
+import { showImage } from '@/utils/helpers'
+
+// ** Interface
 interface Props {
     movie: IDiscover
 }
@@ -25,7 +29,7 @@ export default function BaseMovieCard({ movie }: Props) {
                             draggable={false}
                             height={300}
                             loading="lazy"
-                            src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                            src={showImage(movie.poster_path)}
                             title={movie.name}
                             width={300}
                         />
