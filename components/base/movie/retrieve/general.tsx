@@ -1,6 +1,9 @@
 // ** HeroUI Imports
 import { Divider } from '@heroui/react'
 
+// ** Icons Imports
+import { Star } from 'lucide-react'
+
 // ** Utils Imports
 import { formattedDate, formatDuration } from '@/utils/helpers'
 
@@ -33,6 +36,15 @@ export default function BaseMovieRetrieveGeneral({ data }: Props) {
                         <span>{formattedDate(release_date)}</span>
                         <span>•</span>
                         <span>{formatDuration(runtime)}</span>
+                    </div>
+                </div>
+
+                <div className='flex items-center justify-between gap-2 max-md:mt-2 max-md:flex-wrap'>
+                    <div className='flex min-w-[243px] flex-shrink-0 items-center text-base'>
+                        <div className="flex flex-shrink-0 items-center gap-1 whitespace-nowrap text-sm">
+                            <Star className='text-primary fill-primary' size={16} />
+                            <span>{data.vote_average} / 10</span>
+                        </div>
                     </div>
                 </div>
             </div>
