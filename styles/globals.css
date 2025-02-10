@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer utilities {
+    .aspect-poster {
+        aspect-ratio: 471 / 707;
+    }
+
     .content-carousel {
         grid-auto-columns: calc((100% - (var(--nVisibleItems, 1) - 1) * 24px) / var(--nVisibleItems, 1));
     }

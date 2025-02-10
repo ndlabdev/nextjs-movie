@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 // ** Icons Imports
-import { Star } from 'lucide-react'
+import { Star, Film } from 'lucide-react'
 
 // ** Types Imports
 import { ITVSeries } from '@/types/tv-series'
@@ -17,17 +17,23 @@ export default function BaseMovieCard({ movie }: Props) {
         <>
             <div className='group relative'>
                 <Link href='/'>
-                    <Image
-                        alt={movie.name}
-                        className="mb-1 rounded w-full object-cover block"
-                        decoding="async"
-                        draggable={false}
-                        height={300}
-                        loading="lazy"
-                        src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                        title={movie.name}
-                        width={300}
-                    />
+                    {movie.poster_path ? (
+                        <Image
+                            alt={movie.name}
+                            className="mb-1 rounded w-full object-cover block aspect-poster"
+                            decoding="async"
+                            draggable={false}
+                            height={300}
+                            loading="lazy"
+                            src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                            title={movie.name}
+                            width={300}
+                        />
+                    ) : (
+                        <div className="h-full w-full rounded bg-black/40 object-cover flex items-center justify-center overflow-hidden aspect-poster">
+                            <Film size={36} />
+                        </div>
+                    )}
                 </Link>
 
                 <div className='pointer-events-none absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-10' />

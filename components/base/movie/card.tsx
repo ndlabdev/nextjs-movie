@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 // ** Icons Imports
-import { Star } from 'lucide-react'
+import { Star, Film } from 'lucide-react'
 
 // ** Types Imports
 import { IMoviesResult } from '@/types/trending-movies'
@@ -17,17 +17,23 @@ export default function BaseMovieCard({ movie }: Props) {
         <>
             <div className='group relative'>
                 <Link href='/'>
-                    <Image
-                        alt={movie.title}
-                        className="mb-1 rounded w-full aspect-video object-cover block"
-                        decoding="async"
-                        draggable={false}
-                        height={500}
-                        loading="lazy"
-                        src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-                        title={movie.title}
-                        width={500}
-                    />
+                    {movie.backdrop_path ? (
+                        <Image
+                            alt={movie.title}
+                            className="mb-1 rounded w-full aspect-video object-cover block aspect-poster"
+                            decoding="async"
+                            draggable={false}
+                            height={500}
+                            loading="lazy"
+                            src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+                            title={movie.title}
+                            width={500}
+                        />
+                    ) : (
+                        <div className="h-full w-full rounded bg-black/40 object-cover flex items-center justify-center overflow-hidden aspect-poster">
+                            <Film />
+                        </div>
+                    )}
                 </Link>
 
                 <div className='pointer-events-none absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-10' />

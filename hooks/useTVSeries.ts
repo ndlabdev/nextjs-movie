@@ -1,3 +1,8 @@
+'use client'
+
+// ** Next Imports
+import { useSearchParams } from 'next/navigation'
+
 // ** Third Party Imports
 import { useInfiniteQuery } from '@tanstack/react-query'
 
@@ -15,18 +20,23 @@ const queryKey = {
 }
 
 export const useTVSeriesPopular = () => {
+    const searchParams = useSearchParams()
+    const searchSort = searchParams.get('sort')
+
     const {
         data,
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage
     } = useInfiniteQuery<ITVSeriesPopular>({
-        queryKey: [queryKey.tvPopular],
-        queryFn: ({ pageParam }) => returnFetch('/tv/popular', {
+        queryKey: [queryKey.tvPopular, searchSort],
+        queryFn: ({ pageParam }) => returnFetch('/discover/tv', {
             params: {
-                page: pageParam
+                page: pageParam,
+                sort_by: searchSort
             }
-        }).then((response) => response.json()),
+        })
+            .then((response) => response.json()),
         initialPageParam: 1,
         getNextPageParam: (lastPage) => {
             return lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined
