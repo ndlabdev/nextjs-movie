@@ -13,7 +13,7 @@ export default function TVSeries() {
                     </BaseTitle>
                 </section>
 
-                <BaseMovieShowInfinite />
+                <BaseMovieShowInfinite type='tv' />
             </div>
         </div>
     )

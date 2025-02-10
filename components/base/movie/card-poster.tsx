@@ -6,10 +6,10 @@ import Image from 'next/image'
 import { Star, Film } from 'lucide-react'
 
 // ** Types Imports
-import { ITVSeries } from '@/types/tv-series'
+import { IDiscover } from '@/types/discover'
 
 interface Props {
-    movie: ITVSeries
+    movie: IDiscover
 }
 
 export default function BaseMovieCard({ movie }: Props) {
@@ -19,7 +19,7 @@ export default function BaseMovieCard({ movie }: Props) {
                 <Link href='/'>
                     {movie.poster_path ? (
                         <Image
-                            alt={movie.name}
+                            alt={movie.name as string}
                             className="mb-1 rounded w-full object-cover block aspect-poster"
                             decoding="async"
                             draggable={false}

@@ -4,13 +4,18 @@
 import { Spinner } from '@heroui/react'
 
 // ** Hooks Imports
-import { useTVSeriesPopular } from '@/hooks/useTVSeries'
+import { useDiscoverMovie } from '@/hooks/useDiscover'
 
 // ** Components Imports
 import BaseMovieCard from '@/components/base/movie/card-poster'
 
-export default function BaseMovieShowInfinite() {
-    const { data, isFetching, isFetchingNextPage, observerRef } = useTVSeriesPopular()
+// ** Interface
+interface Props {
+    type: 'movie' | 'tv'
+}
+
+export default function BaseMovieShowInfinite({ type }: Props) {
+    const { data, isFetching, isFetchingNextPage, observerRef } = useDiscoverMovie(type)
 
     if (isFetching && !data) {
         return (
@@ -24,7 +29,7 @@ export default function BaseMovieShowInfinite() {
         <>
             <section className="transition-opacity">
                 <div className="grid gap-4 grid-cols-[repeat(var(--nVisibleItems),minmax(0,1fr))] content-grid-portrait">
-                    {data?.pages.flatMap((page) =>
+                    {data?.flatMap((page) =>
                         page.results.map((movie) => (
                             <div key={movie.id}>
                                 <BaseMovieCard movie={movie} />
