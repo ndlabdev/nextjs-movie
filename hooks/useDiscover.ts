@@ -71,16 +71,27 @@ export const useDiscoverMovie = (type: 'movie' | 'tv') => {
     }, [fetchNextPage, hasNextPage])
 
     return {
-        data: data?.pages.map((page) => ({
-            ...page,
-            results: page.results.map((result) => ({
-                id: result.id,
-                name: result.name || result.title,
-                overview: result.overview,
-                poster_path: result.poster_path,
-                vote_average: result.vote_average
+        data: (() => {
+            const uniqueIds = new Set<number>()
+        
+            return data?.pages.map((page) => ({
+                ...page,
+                results: page.results
+                    .filter((result) => {
+                        if (uniqueIds.has(result.id)) return false
+                        uniqueIds.add(result.id)
+
+                        return true
+                    })
+                    .map((result) => ({
+                        id: result.id,
+                        name: result.name || result.title,
+                        overview: result.overview,
+                        poster_path: result.poster_path,
+                        vote_average: result.vote_average
+                    }))
             }))
-        })),
+        })(),
         isFetching,
         isFetchingNextPage,
         observerRef
