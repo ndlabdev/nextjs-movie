@@ -10,13 +10,21 @@ import { useTVSeriesPopular } from '@/hooks/useTVSeries'
 import BaseMovieCard from '@/components/base/movie/card-poster'
 
 export default function BaseMovieShowInfinite() {
-    const { data, isFetchingNextPage, observerRef } = useTVSeriesPopular()
+    const { data, isFetching, isFetchingNextPage, observerRef } = useTVSeriesPopular()
+
+    if (isFetching && !data) {
+        return (
+            <div className="text-center py-4">
+                <Spinner />
+            </div>
+        )
+    }
 
     return (
         <>
-            <section className='transition-opacity'>
-                <div className='grid gap-4 grid-cols-[repeat(var(--nVisibleItems),minmax(0,1fr))] content-grid-portrait'>
-                    {data?.pages.map((page) =>
+            <section className="transition-opacity">
+                <div className="grid gap-4 grid-cols-[repeat(var(--nVisibleItems),minmax(0,1fr))] content-grid-portrait">
+                    {data?.pages.flatMap((page) =>
                         page.results.map((movie) => (
                             <div key={movie.id}>
                                 <BaseMovieCard movie={movie} />

@@ -27,6 +27,7 @@ export const useTVSeriesPopular = () => {
         data,
         fetchNextPage,
         hasNextPage,
+        isFetching,
         isFetchingNextPage
     } = useInfiniteQuery<ITVSeriesPopular>({
         queryKey: [queryKey.tvPopular, searchSort],
@@ -66,5 +67,10 @@ export const useTVSeriesPopular = () => {
         }
     }, [fetchNextPage, hasNextPage])
 
-    return { data, isFetchingNextPage, observerRef }
+    return {
+        data,
+        isFetching,
+        isFetchingNextPage,
+        observerRef
+    }
 }

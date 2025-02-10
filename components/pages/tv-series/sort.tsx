@@ -4,7 +4,7 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 
 // ** HeroUI Imports
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from '@heroui/react'
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, SharedSelection } from '@heroui/react'
 
 // ** React Imports
 import { useMemo } from 'react'
@@ -36,10 +36,10 @@ export default function TVSeriesFilter() {
     }, [currentSort])
 
     // Handle sort change
-    const handleSelectionChange = (keys) => {
-        const newSort = keys.values().next().value
+    const handleSelectionChange = (keys: SharedSelection) => {
+        const newSort = Array.from(keys)[0] as string
 
-        if (newSort !== currentSort) {
+        if (newSort && newSort !== currentSort) {
             const params = new URLSearchParams(searchParams)
 
             params.set('sort', newSort)
