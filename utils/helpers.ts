@@ -31,3 +31,4 @@ export const formatCurrency = (value: number, country = 'US') => {
 }
 
 export const showImage = (path: string, width = 300) => `${config.imageURL}/w${width}/${path}`
+export const showImageOriginal = (path: string) => `${config.imageURL}/original/${path}`
