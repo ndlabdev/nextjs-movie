@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 // ** HeroUI Imports
-import { Button } from '@heroui/react'
+import { Button, Link } from '@heroui/react'
 import { Modal, ModalContent, ModalBody, ModalHeader, useDisclosure, ModalFooter } from '@heroui/react'
 
 // ** Icons Imports
@@ -25,9 +25,10 @@ import { FileImage, IMovies } from '@/types/movies'
 // ** Interface
 interface Props {
     data: IMovies
+    link?: string
 }
 
-export default function BaseMovieRetrieveImages({ data }: Props) {
+export default function BaseMovieRetrieveImages({ data, link = '/' }: Props) {
     const {isOpen, onOpen, onClose} = useDisclosure()
     const [currentImage, setCurrentImage] = useState<FileImage>()
 
@@ -35,7 +36,7 @@ export default function BaseMovieRetrieveImages({ data }: Props) {
 
     const images = data.images.backdrops.slice(0, 5)
 
-    const handleOpen = (item: any) => {
+    const handleOpen = (item: FileImage) => {
         onOpen()
         setCurrentImage(item)
     }
@@ -44,7 +45,12 @@ export default function BaseMovieRetrieveImages({ data }: Props) {
         <section>
             <div className='mb-5'>
                 <BaseTitle title='Backdrops'>
-                    <Button endContent={<ChevronRight size={18} />} variant="flat">
+                    <Button
+                        as={Link}
+                        endContent={<ChevronRight size={18} />}
+                        href={`/${link}/${data.id}/backdrops`}
+                        variant="flat"
+                    >
                         View More
                     </Button>
                 </BaseTitle>
