@@ -1,16 +1,16 @@
 'use client'
 
-// ** Next Imports
-import Image from 'next/image'
-
 // ** Icons Imports
 import { Play, Plus } from 'lucide-react'
 
 // ** HeroUI Imports
 import { Link, Button, Chip } from '@heroui/react'
 
+// ** Components Imports
+import BaseImage from '@/components/base/image'
+
 // ** Utils Imports
-import { formatCurrency, showImage } from '@/utils/helpers'
+import { formatCurrency } from '@/utils/helpers'
 
 // ** Types Imports
 import { IMovies } from '@/types/movies'
@@ -29,18 +29,7 @@ export default function BaseMovieRetrieveSummary({ data, isMovie }: Props) {
         <>
             <div className="relative">
                 <div className="w-full aspect-poster group relative">
-                    <Image
-                        alt={data.title || data.name}
-                        className="mb-1 rounded w-full object-cover block"
-                        decoding="async"
-                        draggable={false}
-                        height={300}
-                        loading="lazy"
-                        src={showImage(data.poster_path)}
-                        title={data.title || data.name}
-                        width={300}
-                    />
-
+                    <BaseImage image={data.poster_path} name={data.title || data.name} />
                     <span className='pointer-events-none absolute inset-0 block bg-black opacity-0 transition-opacity group-hover:opacity-10' />
                 </div>
             </div>

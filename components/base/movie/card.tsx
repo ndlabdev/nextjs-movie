@@ -1,15 +1,14 @@
 // ** Next Imports
 import Link from 'next/link'
-import Image from 'next/image'
 
 // ** Icons Imports
-import { Star, Film } from 'lucide-react'
+import { Star } from 'lucide-react'
+
+// ** Components Imports
+import BaseImage from '@/components/base/image'
 
 // ** Types Imports
 import { IMoviesResult } from '@/types/trending-movies'
-
-// ** Utils Imports
-import { showImage } from '@/utils/helpers'
 
 // ** Interface
 interface Props {
@@ -22,23 +21,7 @@ export default function BaseMovieCard({ movie, isMovie }: Props) {
         <>
             <div className='group relative'>
                 <Link href={`/${isMovie ? 'movies' : 'tv-series'}/${movie.id}`}>
-                    {movie.backdrop_path ? (
-                        <Image
-                            alt={movie.title || movie.name}
-                            className="mb-1 rounded w-full aspect-video object-cover block"
-                            decoding="async"
-                            draggable={false}
-                            height={500}
-                            loading="lazy"
-                            src={showImage(movie.backdrop_path)}
-                            title={movie.title || movie.name}
-                            width={500}
-                        />
-                    ) : (
-                        <div className="h-full w-full rounded bg-black/40 object-cover flex items-center justify-center overflow-hidden">
-                            <Film />
-                        </div>
-                    )}
+                    <BaseImage image={movie.backdrop_path} name={movie.title || movie.name} />
                 </Link>
 
                 <div className='pointer-events-none absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-10' />

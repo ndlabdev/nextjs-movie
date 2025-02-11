@@ -33,7 +33,7 @@ export default function BaseMovieRetrieveGeneral({ data }: Props) {
                 <div className="flex-auto">
                     <h1 className="mb-3 text-4xl md:mb-2 md:text-5xl">{title || name}</h1>
                     <div className="text-base font-normal flex items-center gap-4 overflow-hidden">
-                        <span>{formattedDate(release_date || first_air_date)}</span>
+                        {release_date || first_air_date && <span>{formattedDate(release_date || first_air_date)}</span>}
                         {runtime && (
                             <>
                                 <span>•</span>

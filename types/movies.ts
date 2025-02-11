@@ -35,6 +35,18 @@ export interface IMovies {
     images:                Images;
     reviews:               Reviews;
     recommendations:       Recommendations;
+    seasons:               Season[];
+}
+
+export interface Season {
+    air_date:      string;
+    episode_count: number;
+    id:            number;
+    name:          string;
+    overview:      string;
+    poster_path:   string;
+    season_number: number;
+    vote_average:  number;
 }
 
 export interface Recommendations {
