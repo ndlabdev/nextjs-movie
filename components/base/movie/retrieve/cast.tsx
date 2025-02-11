@@ -25,6 +25,8 @@ interface Props {
 export default function BaseMovieRetrieveCast({ data, link = '/' }: Props) {
     const castList = data.credits.cast.length ? data.credits.cast.slice(0, 5) : []
 
+    if (!castList.length) return null
+
     return (
         <section>
             <div className='mb-5'>

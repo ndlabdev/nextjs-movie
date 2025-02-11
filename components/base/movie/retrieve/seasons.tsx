@@ -27,7 +27,7 @@ export default function BaseMovieRetrieveSeasons({ data }: Props) {
                 <BaseTitle title='Seasons' />
             </div>
 
-            <div className='grid grid-cols-1 gap-3 sm:grid-cols-6 lg:grid-cols-8'>
+            <div className='grid grid-cols-4 gap-3 sm:grid-cols-6 lg:grid-cols-8'>
                 {data.seasons.map(item => (
                     <div key={item.id} className='flex flex-col'>
                         <Link className='text-inherit hover:underline outline-none focus-visible:underline overflow-x-hidden overflow-ellipsis transition-colors flex-shrink-0' href='/'>
