@@ -22,8 +22,7 @@ interface Props {
 }
 
 export default function BaseMovieRetrieveSummary({ data, isMovie }: Props) {
-    const keywordData = isMovie ? data.keywords?.keywords : data.keywords?.results
-    const keywordList = keywordData ? keywordData.slice(0, 5) : []
+    const keywordList = isMovie ? data.keywords?.keywords : data.keywords?.results
 
     return (
         <>
@@ -85,7 +84,7 @@ export default function BaseMovieRetrieveSummary({ data, isMovie }: Props) {
                         <li className='flex flex-col gap-1'>
                             <strong>Keywords</strong>
                             <div className='flex items-center gap-2 flex-wrap'>
-                                {keywordList.slice(0, 5).map(({ id, name }) => (
+                                {keywordList.map(({ id, name }) => (
                                     <Chip key={id} size="sm">{name}</Chip>
                                 ))}
                             </div>
