@@ -136,7 +136,7 @@ export default function HomeCarousel() {
                     <div className='flex flex-col gap-6'>
                         {upNextMovies.map(movie => (
                             <div key={movie.id} className='relative flex-auto'>
-                                <BaseMovieCard movie={movie} />
+                                <BaseMovieCard isMovie movie={movie} />
                             </div>
                         ))}
                     </div>

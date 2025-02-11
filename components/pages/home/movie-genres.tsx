@@ -14,6 +14,7 @@ export default function HomeMovieGenres() {
             {movieGenres.map(item => (
                 <BaseMovieCarousel
                     key={item.categoryId}
+                    isMovie
                     categoryName={item.categoryName}
                     movies={item.movies}
                 />
