@@ -12,9 +12,10 @@ interface Props {
     name: string
     image?: string | null
     aspect?: 'video' | 'poster' | 'square'
+    responsive?: boolean
 }
 
-export default function BaseImage({ name, image, aspect = 'video' }: Props) {
+export default function BaseImage({ name, image, responsive = false, aspect = 'video' }: Props) {
     const aspectClasses = {
         video: 'aspect-video',
         poster: 'aspect-poster',
@@ -27,7 +28,7 @@ export default function BaseImage({ name, image, aspect = 'video' }: Props) {
         <Image
             priority
             alt={name}
-            className={`mb-1 rounded w-full object-cover block ${className}`}
+            className={`mb-1 rounded object-cover block ${responsive ? 'w-72 md:w-full' : 'w-full'} ${className}`}
             decoding="async"
             draggable={false}
             height={500}

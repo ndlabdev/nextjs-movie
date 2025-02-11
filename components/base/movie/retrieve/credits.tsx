@@ -115,12 +115,12 @@ const CrewList = ({ groupedByJob }: { groupedByJob: Record<string, Cast[]> }) =>
 // ** Render Single Person Card
 const PersonCard = ({ person, subtitle }: { person: Cast, subtitle?: string }) => (
     <div className='flex flex-col gap-1'>
-        <Link href='/'>
+        <Link href={`/people/${person.id}`}>
             <BaseImage aspect="square" image={person.profile_path} name={person.name} />
         </Link>
 
         <div className="flex flex-col">
-            <Link className="text-base" href='/'>{person.name}</Link>
+            <Link className="text-base" href={`/people/${person.id}`}>{person.name}</Link>
             {subtitle && <small className="text-sm text-default-500">{subtitle}</small>}
         </div>
     </div>

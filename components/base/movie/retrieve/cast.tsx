@@ -45,12 +45,12 @@ export default function BaseMovieRetrieveCast({ data, link = '/' }: Props) {
             <div className='grid grid-cols-3 gap-3 md:grid-cols-5 md:gap-6'>
                 {castList.map(item => (
                     <div key={item.id} className='flex flex-col gap-1'>
-                        <NextLink href={'/'}>
+                        <NextLink href={`/people/${item.id}`}>
                             <BaseImage aspect='square' image={item.profile_path} name={item.name} />
                         </NextLink>
 
                         <div className='flex flex-col'>
-                            <NextLink className='text-base' href={'/'}>{item.name}</NextLink>
+                            <NextLink className='text-base' href={`/people/${item.id}`}>{item.name}</NextLink>
                             <small className='text-sm text-default-500'>{item.character}</small>
                         </div>
                     </div>

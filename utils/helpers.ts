@@ -36,3 +36,14 @@ export const showImageOriginal = (path: string) => `${config.imageURL}/original/
 export const getYear = (dateString: string): number => {
     return new Date(dateString).getFullYear()
 }
+
+export const getGender = (value: number): string => {
+    const genders: Record<number, string> = {
+        0: 'Not set / not specified',
+        1: 'Female',
+        2: 'Male',
+        3: 'Non-binary'
+    }
+
+    return genders[value] || 'Unknown'
+}
