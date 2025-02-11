@@ -7,7 +7,11 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 // ** HeroUI Imports
+import { Button } from '@heroui/react'
 import { Modal, ModalContent, ModalBody, ModalHeader, useDisclosure, ModalFooter } from '@heroui/react'
+
+// ** Icons Imports
+import { ChevronRight } from 'lucide-react'
 
 // ** Utils Imports
 import { showImage, showImageOriginal } from '@/utils/helpers'
@@ -16,7 +20,7 @@ import { showImage, showImageOriginal } from '@/utils/helpers'
 import BaseTitle from '@/components/base/title'
 
 // ** Types Imports
-import { IMovies } from '@/types/movies'
+import { FileImage, IMovies } from '@/types/movies'
 
 // ** Interface
 interface Props {
@@ -25,7 +29,7 @@ interface Props {
 
 export default function BaseMovieRetrieveImages({ data }: Props) {
     const {isOpen, onOpen, onClose} = useDisclosure()
-    const [currentImage, setCurrentImage] = useState()
+    const [currentImage, setCurrentImage] = useState<FileImage>()
 
     if (!data.images.backdrops.length) return null
 
@@ -39,7 +43,11 @@ export default function BaseMovieRetrieveImages({ data }: Props) {
     return (
         <section>
             <div className='mb-5'>
-                <BaseTitle title='Images' />
+                <BaseTitle title='Backdrops'>
+                    <Button endContent={<ChevronRight size={18} />} variant="flat">
+                        View More
+                    </Button>
+                </BaseTitle>
             </div>
                         
             <div className='grid grid-cols-3 gap-3 md:grid-cols-5 md:gap-6'>
@@ -66,17 +74,19 @@ export default function BaseMovieRetrieveImages({ data }: Props) {
                         <>
                             <ModalHeader />
                             <ModalBody>
-                                <Image
-                                    alt={data.title || data.name}
-                                    className="max-h-full w-auto object-contain shadow"
-                                    decoding="async"
-                                    draggable={false}
-                                    height={1280}
-                                    loading="lazy"
-                                    src={showImageOriginal(currentImage.file_path)}
-                                    title={data.title || data.name}
-                                    width={720}
-                                />
+                                {currentImage && (
+                                    <Image
+                                        alt={data.title || data.name}
+                                        className="max-h-full w-auto object-contain shadow"
+                                        decoding="async"
+                                        draggable={false}
+                                        height={1280}
+                                        loading="lazy"
+                                        src={showImageOriginal(currentImage.file_path)}
+                                        title={data.title || data.name}
+                                        width={720}
+                                    />
+                                )}
                             </ModalBody>
                             <ModalFooter />
                         </>

@@ -1,6 +1,7 @@
 'use client'
 
 // ** Components Imports
+import BaseMovieRetrieveCast from '@/components/base/movie/retrieve/cast'
 import BaseMovieRetrieveSeasons from '@/components/base/movie/retrieve/seasons'
 import BaseMovieRetrieveGeneral from '@/components/base/movie/retrieve/general'
 import BaseMovieRetrieveSummary from '@/components/base/movie/retrieve/summary'
@@ -32,6 +33,7 @@ export default function BaseMovieRetrieveContent({ type = 'movie' }: Props) {
                     <BaseMovieRetrieveGeneral data={data} />
                     <BaseMovieRetrieveSeasons data={data} />
                     <BaseMovieRetrieveImages data={data} />
+                    <BaseMovieRetrieveCast data={data} link={isMovie ? 'movies' : 'tv-series'} />
                     <BaseMovieRetrieveReviews data={data} />
                 </div>
             </div>

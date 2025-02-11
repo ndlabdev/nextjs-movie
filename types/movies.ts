@@ -91,9 +91,19 @@ export interface Genre {
 }
 
 export interface Images {
-    backdrops: any[];
-    logos:     any[];
-    posters:   any[];
+    backdrops: FileImage[];
+    logos:     FileImage[];
+    posters:   FileImage[];
+}
+
+export interface FileImage {
+    aspect_ratio: number;
+    height:       number;
+    iso_639_1:    null;
+    file_path:    string;
+    vote_average: number;
+    vote_count:   number;
+    width:        number;
 }
 
 export interface Keywords {
