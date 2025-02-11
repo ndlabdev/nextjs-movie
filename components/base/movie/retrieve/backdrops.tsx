@@ -132,11 +132,11 @@ const PersonCard = ({ item, data }: { item: FileImage, data: IMovies }) => {
                                         className="max-h-full w-auto object-contain shadow"
                                         decoding="async"
                                         draggable={false}
-                                        height={1280}
+                                        height={item.height}
                                         loading="lazy"
                                         src={showImageOriginal(currentImage.file_path)}
                                         title={data.title || data.name}
-                                        width={720}
+                                        width={item.width}
                                     />
                                 )}
                             </ModalBody>
