@@ -29,7 +29,7 @@ export default function BaseMovieRetrieveSummary({ data, isMovie }: Props) {
         <>
             <div className="relative">
                 <div className="w-full aspect-poster group relative">
-                    <BaseImage image={data.poster_path} name={data.title || data.name} />
+                    <BaseImage aspect='poster' image={data.poster_path} name={data.title || data.name} />
                     <span className='pointer-events-none absolute inset-0 block bg-black opacity-0 transition-opacity group-hover:opacity-10' />
                 </div>
             </div>

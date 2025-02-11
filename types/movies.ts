@@ -98,6 +98,7 @@ export interface Images {
 
 export interface Keywords {
     keywords: Genre[];
+    results:  Genre[];
 }
 
 export interface ProductionCompany {
