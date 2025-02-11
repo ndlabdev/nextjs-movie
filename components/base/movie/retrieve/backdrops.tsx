@@ -32,7 +32,8 @@ interface Props {
 
 export default function BaseMovieRetrieveBackdrops({ }: Props) {
     // ** Hooks
-    const [showBackdrops, setShowBackdrops] = useState(true)
+    const [showBackdrops, setShowBackdrops] = useState<boolean>(true)
+    const [showPosters, setShowPosters] = useState<boolean>(true)
     const data = useMovieRetrieveContext()
 
     return (
@@ -41,7 +42,7 @@ export default function BaseMovieRetrieveBackdrops({ }: Props) {
             <MovieInfo data={data} />
 
             <div className='mt-12'>
-                {/* Cast Section */}
+                {/* Backdrops Section */}
                 <CreditsList
                     count={data?.images?.backdrops?.length}
                     show={showBackdrops}
@@ -50,6 +51,22 @@ export default function BaseMovieRetrieveBackdrops({ }: Props) {
                 >
                     <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 md:gap-6">
                         {data?.images?.backdrops?.map((item, index) => (
+                            <PersonCard key={index} data={data} item={item} />
+                        ))}
+                    </div>
+                </CreditsList>
+            </div>
+
+            <div className='mt-12'>
+                {/* Poster Section */}
+                <CreditsList
+                    count={data?.images?.posters?.length}
+                    show={showPosters}
+                    title="Backdrops"
+                    toggleShow={() => setShowPosters(prev => !prev)}
+                >
+                    <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 md:gap-6">
+                        {data?.images?.posters?.map((item, index) => (
                             <PersonCard key={index} data={data} item={item} />
                         ))}
                     </div>
@@ -103,7 +120,7 @@ const PersonCard = ({ item, data }: { item: FileImage, data: IMovies }) => {
                 </div>
             </div>
 
-            <Modal isOpen={isOpen} size='5xl' onClose={onClose}>
+            <Modal isOpen={isOpen} scrollBehavior='outside' size='5xl' onClose={onClose}>
                 <ModalContent>
                     {() => (
                         <>

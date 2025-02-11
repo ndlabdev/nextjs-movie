@@ -27,8 +27,8 @@ interface Props {
 
 export default function BaseMovieRetrieveCredits({ }: Props) {
     // ** Hooks
-    const [showCast, setShowCast] = useState(true)
-    const [showCrew, setShowCrew] = useState(true)
+    const [showCast, setShowCast] = useState<boolean>(true)
+    const [showCrew, setShowCrew] = useState<boolean>(true)
     const data = useMovieRetrieveContext()
 
     // ** Memoized Crew Grouping
