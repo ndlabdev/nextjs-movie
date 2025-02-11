@@ -1,14 +1,14 @@
 'use client'
 
 // ** Next Imports
-import Link from 'next/link'
+import NextLink from 'next/link'
 import Image from 'next/image'
 
 // ** React Imports
 import { useState } from 'react'
 
 // ** HeroUI Imports
-import { Button } from '@heroui/react'
+import { Button, Link } from '@heroui/react'
 
 // ** Icons Imports
 import { Play, Star, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -63,7 +63,7 @@ export default function HomeCarousel() {
                                     <div className='absolute left-0 h-full w-full bg-gradient-to-b from-black/40 max-md:top-0 md:bottom-0 md:h-3/4 md:bg-gradient-to-t md:from-black/100' />
 
                                     <div className='max-h-80 h-full aspect-poster z-10 shadow-md max-md:hidden group relative flex-shrink-0'>
-                                        <Link href={`/movies/${currentMovie.id}`}>
+                                        <NextLink href={`/movies/${currentMovie.id}`}>
                                             <Image
                                                 alt={currentMovie.title}
                                                 className='h-full w-full rounded bg-fg-base/4 object-cover block'
@@ -77,7 +77,7 @@ export default function HomeCarousel() {
                                             />
 
                                             <span className='pointer-events-none absolute inset-0 block bg-black opacity-0 transition-opacity group-hover:opacity-10' />
-                                        </Link>
+                                        </NextLink>
                                     </div>
 
                                     <div className='z-10 text-lg md:max-w-xl'>
@@ -87,9 +87,9 @@ export default function HomeCarousel() {
                                         </div>
 
                                         <div className='my-2 text-2xl md:text-5xl'>
-                                            <Link className='text-inherit hover:underline outline-none focus-visible:underline overflow-x-hidden overflow-ellipsis transition-colors' href={`/movies/${currentMovie.id}`}>
+                                            <NextLink className='text-inherit hover:underline outline-none focus-visible:underline overflow-x-hidden overflow-ellipsis transition-colors' href={`/movies/${currentMovie.id}`}>
                                                 {currentMovie.title}                                                    
-                                            </Link>
+                                            </NextLink>
                                         </div>
 
                                         <p className='max-md:hidden line-clamp-4'>
@@ -97,9 +97,12 @@ export default function HomeCarousel() {
                                         </p>
 
                                         <Button
+                                            as={Link}
                                             className='focus-visible:ring text-on-primary bg-primary border border-primary hover:bg-primary-dark hover:border-primary-dark disabled:text-disabled disabled:bg-disabled disabled:border-transparent disabled:shadow-none whitespace-nowrap inline-flex align-middle flex-shrink-0 items-center transition-button duration-200 select-none appearance-none no-underline outline-none disabled:pointer-events-none disabled:cursor-default rounded-full justify-center font-semibold text-sm h-9 px-3 mt-4 md:min-h-10 md:min-w-36'
                                             color="primary"
+                                            href='https://tv.apple.com/'
                                             startContent={<Play className='fill-white' size={16} />}
+                                            target='_blank'
                                         >
                                             Watch now
                                         </Button>

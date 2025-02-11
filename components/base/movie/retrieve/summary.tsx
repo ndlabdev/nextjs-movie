@@ -39,7 +39,9 @@ export default function BaseMovieRetrieveSummary({ data, isMovie }: Props) {
                     as={Link}
                     className='mt-3'
                     color='primary'
+                    href='https://tv.apple.com/'
                     startContent={<Play className='fill-white' size={18} />}
+                    target='_blank'
                 >
                     Watch now
                 </Button>
