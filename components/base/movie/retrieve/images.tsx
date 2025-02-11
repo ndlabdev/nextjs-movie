@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 // ** HeroUI Imports
-import { Modal, ModalContent, ModalBody, ModalHeader, useDisclosure } from '@heroui/react'
+import { Modal, ModalContent, ModalBody, ModalHeader, useDisclosure, ModalFooter } from '@heroui/react'
 
 // ** Utils Imports
 import { showImage, showImageOriginal } from '@/utils/helpers'
@@ -46,14 +46,14 @@ export default function BaseMovieRetrieveImages({ data }: Props) {
                 {images.map(item => (
                     <Image
                         key={item.file_path}
-                        alt={data.title}
+                        alt={data.title || data.name}
                         className="aspect-square w-full cursor-pointer rounded object-cover"
                         decoding="async"
                         draggable={false}
                         height={300}
                         loading="lazy"
                         src={showImage(item.file_path)}
-                        title={data.title}
+                        title={data.title || data.name}
                         width={300}
                         onClick={() => handleOpen(item)}
                     />
@@ -67,17 +67,18 @@ export default function BaseMovieRetrieveImages({ data }: Props) {
                             <ModalHeader />
                             <ModalBody>
                                 <Image
-                                    alt={data.title}
+                                    alt={data.title || data.name}
                                     className="max-h-full w-auto object-contain shadow"
                                     decoding="async"
                                     draggable={false}
                                     height={1280}
                                     loading="lazy"
                                     src={showImageOriginal(currentImage.file_path)}
-                                    title={data.title}
+                                    title={data.title || data.name}
                                     width={720}
                                 />
                             </ModalBody>
+                            <ModalFooter />
                         </>
                     )}
                 </ModalContent>

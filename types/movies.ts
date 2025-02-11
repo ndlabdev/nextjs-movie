@@ -1,3 +1,6 @@
+// ** Types Imports
+import { IMoviesResult } from './trending-movies'
+
 export interface IMovies {
     adult:                 boolean;
     backdrop_path:         string;
@@ -16,11 +19,13 @@ export interface IMovies {
     production_companies:  ProductionCompany[];
     production_countries:  ProductionCountry[];
     release_date:          string;
+    first_air_date:        string;
     revenue:               number;
     runtime:               number;
     spoken_languages:      SpokenLanguage[];
     status:                string;
     tagline:               string;
+    name:                  string;
     title:                 string;
     video:                 boolean;
     vote_average:          number;
@@ -29,6 +34,14 @@ export interface IMovies {
     keywords:              Keywords;
     images:                Images;
     reviews:               Reviews;
+    recommendations:       Recommendations;
+}
+
+export interface Recommendations {
+    page:          number;
+    results:       IMoviesResult[];
+    total_pages:   number;
+    total_results: number;
 }
 
 export interface BelongsToCollection {

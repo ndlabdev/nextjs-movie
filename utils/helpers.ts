@@ -30,5 +30,5 @@ export const formatCurrency = (value: number, country = 'US') => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(value)
 }
 
-export const showImage = (path: string, width = 300) => `${config.imageURL}/w${width}/${path}`
+export const showImage = (path: string, width = 500) => `${config.imageURL}/w${width}/${path}`
 export const showImageOriginal = (path: string) => `${config.imageURL}/original/${path}`

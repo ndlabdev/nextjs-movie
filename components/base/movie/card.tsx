@@ -13,24 +13,25 @@ import { showImage } from '@/utils/helpers'
 
 // ** Interface
 interface Props {
+    isMovie?: boolean
     movie: IMoviesResult
 }
 
-export default function BaseMovieCard({ movie }: Props) {
+export default function BaseMovieCard({ movie, isMovie }: Props) {
     return (
         <>
             <div className='group relative'>
-                <Link href={`/movies/${movie.id}`}>
+                <Link href={`/${isMovie ? 'movies' : 'tv-series'}/${movie.id}`}>
                     {movie.backdrop_path ? (
                         <Image
-                            alt={movie.title}
+                            alt={movie.title || movie.name}
                             className="mb-1 rounded w-full aspect-video object-cover block"
                             decoding="async"
                             draggable={false}
                             height={500}
                             loading="lazy"
                             src={showImage(movie.backdrop_path)}
-                            title={movie.title}
+                            title={movie.title || movie.name}
                             width={500}
                         />
                     ) : (
@@ -46,9 +47,9 @@ export default function BaseMovieCard({ movie }: Props) {
             <div className="mb-1 overflow-hidden overflow-ellipsis whitespace-nowrap text-sm">
                 <a
                     className="text-inherit hover:underline outline-none focus-visible:underline overflow-x-hidden overflow-ellipsis transition-colors text-base font-medium"
-                    href={`/movies/${movie.id}`}
+                    href={`/${isMovie ? 'movies' : 'tv-series'}/${movie.id}`}
                 >
-                    {movie.title}
+                    {movie.title || movie.name}
                 </a>
             </div>
 

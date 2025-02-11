@@ -15,9 +15,10 @@ import { IMoviesResult } from '@/types/trending-movies'
 interface Props {
     categoryName: string
     movies: IMoviesResult[]
+    isMovie?: boolean
 }
 
-export default function BaseMovieCarousel({ categoryName, movies }: Props) {
+export default function BaseMovieCarousel({ categoryName, movies, isMovie }: Props) {
     const carouselRef = useRef<HTMLDivElement>(null)
 
     return (
@@ -34,7 +35,7 @@ export default function BaseMovieCarousel({ categoryName, movies }: Props) {
             >
                 {movies.map((movie) => (
                     <div key={movie.id} className="snap-start snap-normal">
-                        <BaseMovieCard movie={movie} />
+                        <BaseMovieCard isMovie={isMovie} movie={movie} />
                     </div>
                 ))}
             </div>

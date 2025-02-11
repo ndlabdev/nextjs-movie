@@ -17,25 +17,27 @@ import { IMovies } from '@/types/movies'
 
 // ** Interface
 interface Props {
+    isMovie?: boolean
     data: IMovies
 }
 
-export default function BaseMovieRetrieveSummary({ data }: Props) {
-    const keywordList = data.keywords?.keywords?.slice(0, 5) || []
+export default function BaseMovieRetrieveSummary({ data, isMovie }: Props) {
+    const keywordData = isMovie ? data.keywords?.keywords : data.keywords?.results
+    const keywordList = keywordData ? keywordData.slice(0, 5) : []
 
     return (
         <>
             <div className="relative">
                 <div className="w-full aspect-poster group relative">
                     <Image
-                        alt={data.title}
+                        alt={data.title || data.name}
                         className="mb-1 rounded w-full object-cover block"
                         decoding="async"
                         draggable={false}
                         height={300}
                         loading="lazy"
                         src={showImage(data.poster_path)}
-                        title={data.title}
+                        title={data.title || data.name}
                         width={300}
                     />
 

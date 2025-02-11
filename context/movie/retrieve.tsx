@@ -14,13 +14,14 @@ import { IMovies } from '@/types/movies'
 
 // ** Interface
 interface Props {
+    type?: 'movie' | 'tv'
     children: React.ReactNode
 }
 
 export const MovieRetrieveContext = createContext<IMovies | null>(null)
 
-export function MovieRetrieveProvider({ children }: Props) {
-    const { data, isFetching } = useDiscoverDetail()
+export function MovieRetrieveProvider({ children, type = 'movie' }: Props) {
+    const { data, isFetching } = useDiscoverDetail(type)
 
     if (isFetching) {
         return (

@@ -16,14 +16,14 @@ const queryKey = {
     movieDetail: 'movie-detail'
 }
 
-export const useDiscoverDetail = () => {
+export const useDiscoverDetail = (type: 'movie' | 'tv') => {
     const params = useParams()
 
     return useQuery<IMovies>({
         queryKey: [queryKey.movieDetail, params.id],
-        queryFn: () => returnFetch(`/movie/${params.id}`, {
+        queryFn: () => returnFetch(`/${type}/${params.id}`, {
             params: {
-                append_to_response: 'credits,keywords,images,reviews'
+                append_to_response: 'credits,keywords,images,reviews,recommendations'
             }
         })
             .then((response) => response.json())

@@ -13,14 +13,15 @@ import { showImage } from '@/utils/helpers'
 
 // ** Interface
 interface Props {
+    link: string
     movie: IDiscover
 }
 
-export default function BaseMovieCard({ movie }: Props) {
+export default function BaseMovieCard({ link, movie }: Props) {
     return (
         <>
             <div className='group relative'>
-                <Link href={`/movies/${movie.id}`}>
+                <Link href={`/${link}/${movie.id}`}>
                     {movie.poster_path ? (
                         <Image
                             alt={movie.name as string}
@@ -46,7 +47,7 @@ export default function BaseMovieCard({ movie }: Props) {
             <div className="mb-1 overflow-hidden overflow-ellipsis whitespace-nowrap text-sm">
                 <Link
                     className="text-inherit hover:underline outline-none focus-visible:underline overflow-x-hidden overflow-ellipsis transition-colors text-base font-medium"
-                    href={`/movies/${movie.id}`}
+                    href={`/${link}/${movie.id}`}
                 >
                     {movie.name}
                 </Link>

@@ -19,7 +19,7 @@ interface Props {
 }
 
 export default function BaseMovieRetrieveGeneral({ data }: Props) {
-    const { title, release_date, runtime, genres, tagline, overview, credits } = data
+    const { name, title, first_air_date, release_date, runtime, genres, tagline, overview, vote_average, credits } = data
 
     const filterCrewByDepartment = (department: string) =>
         credits.crew.filter(person => person.department === department).slice(0, 3)
@@ -31,11 +31,15 @@ export default function BaseMovieRetrieveGeneral({ data }: Props) {
         <section>
             <div className="mb-6 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                 <div className="flex-auto">
-                    <h1 className="mb-3 text-4xl md:mb-2 md:text-5xl">{title}</h1>
+                    <h1 className="mb-3 text-4xl md:mb-2 md:text-5xl">{title || name}</h1>
                     <div className="text-base font-normal flex items-center gap-4 overflow-hidden">
-                        <span>{formattedDate(release_date)}</span>
-                        <span>•</span>
-                        <span>{formatDuration(runtime)}</span>
+                        <span>{formattedDate(release_date || first_air_date)}</span>
+                        {runtime && (
+                            <>
+                                <span>•</span>
+                                <span>{formatDuration(runtime || 0)}</span>
+                            </>
+                        )}
                     </div>
                 </div>
 
@@ -43,7 +47,7 @@ export default function BaseMovieRetrieveGeneral({ data }: Props) {
                     <div className='flex min-w-[243px] flex-shrink-0 items-center text-base'>
                         <div className="flex flex-shrink-0 items-center gap-1 whitespace-nowrap text-sm">
                             <Star className='text-primary fill-primary' size={16} />
-                            <span>{data.vote_average} / 10</span>
+                            <span>{vote_average} / 10</span>
                         </div>
                     </div>
                 </div>

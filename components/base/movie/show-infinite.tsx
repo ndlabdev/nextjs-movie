@@ -16,6 +16,7 @@ interface Props {
 
 export default function BaseMovieShowInfinite({ type }: Props) {
     const { data, isFetching, isFetchingNextPage, observerRef } = useDiscoverMovie(type)
+    const link = type === 'movie' ? 'movies' : 'tv-series'
 
     if (isFetching && !data) {
         return (
@@ -32,7 +33,7 @@ export default function BaseMovieShowInfinite({ type }: Props) {
                     {data?.flatMap((page) =>
                         page.results.map((movie) => (
                             <div key={movie.id}>
-                                <BaseMovieCard movie={movie} />
+                                <BaseMovieCard link={link} movie={movie} />
                             </div>
                         ))
                     )}

@@ -3,6 +3,7 @@ import { IGeneral } from './index'
 
 export interface IMoviesResult {
     id: number
+    name: string
     title: string
     overview: string
     poster_path: string
