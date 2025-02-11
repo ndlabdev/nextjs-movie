@@ -22,6 +22,9 @@ import { formattedDate, formatDuration } from '@/utils/helpers'
 // ** Context Imports
 import { useMovieRetrieveContext } from '@/context/movie/retrieve'
 
+// ** Types Imports
+import { Cast, IMovies } from '@/types/movies'
+
 // ** Interface
 interface Props {
     type?: 'movie' | 'tv'
@@ -35,12 +38,15 @@ export default function BaseMovieRetrieveCredits({ }: Props) {
 
     // ** Memoized Crew Grouping
     const groupedByJob = useMemo(() => {
-        return data?.credits.crew.reduce((acc, item) => {
-            (acc[item.job] ||= []).push(item)
+        return (data?.credits?.crew ?? []).reduce((acc, item) => {
+            const job = item.job || 'Unknown'
+
+            ;(acc[job] ||= []).push(item)
 
             return acc
-        }, {} as Record<string, typeof data.credits.crew>) || {}
+        }, {} as Record<string, typeof data.credits.crew[number][]>)
     }, [data?.credits?.crew])
+    
 
     return (
         <div className="container mx-auto mt-6 px-3 md:mt-10 md:px-6">
@@ -81,7 +87,7 @@ export default function BaseMovieRetrieveCredits({ }: Props) {
 /* ---------------------------------------- */
 
 // ** Movie Information Header
-const MovieInfo = ({ data }: { data: any }) => (
+const MovieInfo = ({ data }: { data: IMovies }) => (
     <div className="mb-6 items-center justify-between gap-6 lg:flex">
         {/* Poster Image */}
         <div className="w-20 aspect-poster group relative flex-shrink-0">
@@ -103,6 +109,7 @@ const MovieInfo = ({ data }: { data: any }) => (
                 {data?.release_date || data?.first_air_date ? (
                     <span>{formattedDate(data.release_date || data.first_air_date)}</span>
                 ) : null}
+
                 {data?.runtime && <><span>•</span><span>{formatDuration(data.runtime)}</span></>}
             </div>
         </div>
@@ -137,7 +144,7 @@ const CreditsList = ({ title, count, show, toggleShow, children }: {
 )
 
 // ** Render Grouped Crew List
-const CrewList = ({ groupedByJob }: { groupedByJob: Record<string, any[]> }) => (
+const CrewList = ({ groupedByJob }: { groupedByJob: Record<string, Cast[]> }) => (
     <div className="space-y-6">
         {Object.entries(groupedByJob).map(([job, people]) => (
             <div key={job}>
@@ -152,7 +159,7 @@ const CrewList = ({ groupedByJob }: { groupedByJob: Record<string, any[]> }) => 
 )
 
 // ** Render Single Person Card
-const PersonCard = ({ person, subtitle }: { person: any, subtitle?: string }) => (
+const PersonCard = ({ person, subtitle }: { person: Cast, subtitle?: string }) => (
     <div className='flex flex-col gap-1'>
         <Link href='/'>
             <BaseImage aspect="square" image={person.profile_path} name={person.name} />
