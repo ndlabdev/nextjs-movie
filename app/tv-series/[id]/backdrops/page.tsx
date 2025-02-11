@@ -6,7 +6,7 @@ import { MovieRetrieveProvider } from '@/context/movie/retrieve'
 
 export default function MovieBackdrops() {
     return (
-        <MovieRetrieveProvider>
+        <MovieRetrieveProvider type='tv'>
             <BaseMovieRetrieveBackdrops />
         </MovieRetrieveProvider>
     )
