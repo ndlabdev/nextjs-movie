@@ -62,7 +62,7 @@ export default function BaseMovieRetrieveBackdrops({ }: Props) {
                 <CreditsList
                     count={data?.images?.posters?.length}
                     show={showPosters}
-                    title="Backdrops"
+                    title="Posters"
                     toggleShow={() => setShowPosters(prev => !prev)}
                 >
                     <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 md:gap-6">
