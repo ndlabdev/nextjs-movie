@@ -1,5 +1,6 @@
 // ** Next Imports
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 // ** Icons Imports
 import { Star } from 'lucide-react'
@@ -19,11 +20,14 @@ interface Props {
 }
 
 export default function MovieInfo({ data }: Props) {
+    const pathname = usePathname()
+    const baseUrl = pathname.split('/').slice(0, -1).join('/')
+
     return (
         <div className="mb-6 items-center justify-between gap-6 lg:flex">
             {/* Poster Image */}
             <div className="w-20 aspect-poster group relative flex-shrink-0">
-                <Link href='/'>
+                <Link href={baseUrl}>
                     <BaseImage aspect="poster" image={data?.poster_path} name={data?.title || data?.name} />
                     <span className='pointer-events-none absolute inset-0 block bg-black opacity-0 transition-opacity group-hover:opacity-10' />
                 </Link>
@@ -32,7 +36,7 @@ export default function MovieInfo({ data }: Props) {
             {/* Title & Release Info */}
             <div className='flex-auto'>
                 <h1 className='mb-3 text-4xl md:mb-2 md:text-5xl'>
-                    <Link className='text-inherit hover:underline' href='/'>
+                    <Link className='text-inherit hover:underline' href={baseUrl}>
                         {data?.title || data?.name}
                     </Link>
                 </h1>
