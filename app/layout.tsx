@@ -14,6 +14,7 @@ import { fontSans } from '@/configs/fonts'
 
 // ** Components Imports
 import TheaHeader from '@/components/layouts/headers/TheHeader'
+import TheFooter from '@/components/layouts/TheFooter'
 
 export const metadata: Metadata = {
     title: {
@@ -55,6 +56,8 @@ export default function RootLayout({
                             {children}
                         </div>
                     </div>
+
+                    <TheFooter />
                 </Providers>
             </body>
         </html>
