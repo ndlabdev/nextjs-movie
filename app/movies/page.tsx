@@ -1,3 +1,6 @@
+// ** React Imports
+import { Suspense } from 'react'
+
 // ** Components Imports
 import BaseMovieShowInfinite from '@/components/base/movie/show-infinite'
 import BaseTitle from '@/components/base/title'
@@ -9,7 +12,9 @@ export default function Movie() {
             <div className="container mx-auto p-3 @container md:p-6">
                 <section className="mb-5 md:mb-10">
                     <BaseTitle title='Movies'>
-                        <DiscoverSort type='movie' />
+                        <Suspense>
+                            <DiscoverSort type='movie' />
+                        </Suspense>
                     </BaseTitle>
                 </section>
 

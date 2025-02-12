@@ -5,6 +5,9 @@ import '@/styles/globals.css'
 import { Metadata, Viewport } from 'next'
 import clsx from 'clsx'
 
+// ** React Imports
+import { Suspense } from 'react'
+
 // ** Providers Imports
 import { Providers } from './providers'
 
@@ -14,6 +17,7 @@ import { fontSans } from '@/configs/fonts'
 
 // ** Components Imports
 import TheaHeader from '@/components/layouts/headers/TheHeader'
+import TheFooter from '@/components/layouts/TheFooter'
 
 export const metadata: Metadata = {
     title: {
@@ -52,9 +56,11 @@ export default function RootLayout({
 
                     <div className='flex-auto'>
                         <div className="relative min-h-[1000px] overflow-hidden">
-                            {children}
+                            <Suspense fallback={<span>Loading...</span>}>{children}</Suspense>
                         </div>
                     </div>
+
+                    <TheFooter />
                 </Providers>
             </body>
         </html>
