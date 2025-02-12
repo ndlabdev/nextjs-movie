@@ -5,6 +5,9 @@ import '@/styles/globals.css'
 import { Metadata, Viewport } from 'next'
 import clsx from 'clsx'
 
+// ** React Imports
+import { Suspense } from 'react'
+
 // ** Providers Imports
 import { Providers } from './providers'
 
@@ -53,7 +56,7 @@ export default function RootLayout({
 
                     <div className='flex-auto'>
                         <div className="relative min-h-[1000px] overflow-hidden">
-                            {children}
+                            <Suspense fallback={<span>Loading...</span>}>{children}</Suspense>
                         </div>
                     </div>
 
