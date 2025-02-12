@@ -13,7 +13,7 @@ export const formatDuration = (minutes: number) => {
 }
 
 export const formatCurrency = (value: number, country = 'US') => {
-    const currencyMap = {
+    const currencyMap: Record<string, string> = {
         US: 'USD',
         CA: 'CAD',
         GB: 'GBP',
