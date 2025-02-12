@@ -80,7 +80,7 @@ export default function HomeCarousel() {
                                         </NextLink>
                                     </div>
 
-                                    <div className='z-10 text-lg md:max-w-xl'>
+                                    <div className='z-10 text-lg md:max-w-xl flex flex-col self-end items-start'>
                                         <div className='flex flex-shrink-0 items-center gap-1 whitespace-nowrap'>
                                             <Star className='text-primary fill-primary' size={20} />
                                             <span>{currentMovie.vote_average} / 10</span>
@@ -113,19 +113,17 @@ export default function HomeCarousel() {
                     </div>
 
                     <div className='absolute top-2 z-5 w-full md:top-[170px]'>
-                        <div className='absolute left-2 hidden md:left-7 md:block'>
+                        <div className='absolute left-2 md:left-7 block'>
                             <Button
                                 isIconOnly
-                                size='lg'
                                 startContent={<ChevronLeft />}
                                 onPress={() => changeMovie(-1)}
                             />
                         </div>
 
-                        <div className='absolute right-2 hidden md:right-7 md:block'>
+                        <div className='absolute right-2 md:right-7 block'>
                             <Button
                                 isIconOnly
-                                size='lg'
                                 startContent={<ChevronRight />}
                                 onPress={() => changeMovie(1)}
                             />
@@ -133,10 +131,10 @@ export default function HomeCarousel() {
                     </div>
                 </div>
 
-                <div className='w-1/4 max-w-52 flex-shrink-0 max-md:hidden'>
+                <div className='md:w-1/4 md:max-w-52 flex-shrink-0 max-md:mt-6'>
                     <h4 className='mb-3 text-lg font-semibold'>Up Next</h4>
 
-                    <div className='flex flex-col gap-6'>
+                    <div className='flex flex-col gap-6 max-md:grid max-md:grid-cols-3'>
                         {upNextMovies.map(movie => (
                             <div key={movie.id} className='relative flex-auto'>
                                 <BaseMovieCard isMovie movie={movie} />
