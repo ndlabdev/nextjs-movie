@@ -3,6 +3,9 @@
 // ** Next Imports
 import { useParams } from 'next/navigation'
 
+// ** React Imports
+import { useState } from 'react'
+
 // ** Third Party Imports
 import { useQuery } from '@tanstack/react-query'
 
@@ -13,7 +16,8 @@ import { returnFetch } from '@/lib/return-fetch'
 import { IMovies } from '@/types/movies'
 
 const queryKey = {
-    movieDetail: 'movie-detail'
+    movieDetail: 'movie-detail',
+    movieSearch: 'movie-search'
 }
 
 export const useDiscoverDetail = (type: 'movie' | 'tv') => {
@@ -28,4 +32,25 @@ export const useDiscoverDetail = (type: 'movie' | 'tv') => {
         })
             .then((response) => response.json())
     })
+}
+
+export const useMovieSearch = () => {
+    const [search, setSearch] = useState<string>('sonic')
+
+    const data = useQuery<IMovies>({
+        queryKey: [queryKey.movieSearch, search],
+        queryFn: () => returnFetch('/search/multi', {
+            params: {
+                query: search
+            }
+        })
+            .then((response) => response.json()),
+        enabled: !!search
+    })
+
+    return {
+        ...data,
+        search,
+        setSearch
+    }
 }

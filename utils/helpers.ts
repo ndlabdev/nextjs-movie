@@ -47,3 +47,12 @@ export const getGender = (value: number): string => {
 
     return genders[value] || 'Unknown'
 }
+
+export const getMediaType = (value: string, known_for?: string): string => {
+    const media_type: Record<string, string> = {
+        'movie': 'Movie',
+        'tv': 'TV Series'
+    }
+
+    return media_type[value] || known_for || 'Unknown'
+}
