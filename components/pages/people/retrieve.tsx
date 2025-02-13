@@ -43,7 +43,7 @@ export default function BasePeopleRetrieveRetrieve() {
                     <h1 className="text-4xl md:mb-8 md:text-5xl">{data.name}</h1>
 
                     {/* Biography Section */}
-                    {biography.length > 0 && (
+                    {data.biography && (
                         <section className='space-y-4'>
                             <BaseTitle title="Biography" />
 
