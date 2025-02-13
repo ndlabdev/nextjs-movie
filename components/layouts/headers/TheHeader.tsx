@@ -14,11 +14,11 @@ const headerItem = [
     {
         title: 'TV Series',
         href: '/tv-series'
-    },
-    {
-        title: 'Watchlist',
-        href: '/watchlist'
     }
+    // {
+    //     title: 'Watchlist',
+    //     href: '/watchlist'
+    // }
 ]
 
 export default function TheHeader() {

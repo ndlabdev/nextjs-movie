@@ -1,7 +1,7 @@
 'use client'
 
 // ** Icons Imports
-import { Play, Plus } from 'lucide-react'
+import { Play } from 'lucide-react'
 
 // ** HeroUI Imports
 import { Link, Button, Chip } from '@heroui/react'
@@ -46,7 +46,7 @@ export default function BaseMovieRetrieveSummary({ data, isMovie }: Props) {
                     Watch now
                 </Button>
 
-                <Button
+                {/* <Button
                     fullWidth
                     as={Link}
                     className='mt-3'
@@ -54,7 +54,7 @@ export default function BaseMovieRetrieveSummary({ data, isMovie }: Props) {
                     variant='ghost'
                 >
                     Add to watchlist
-                </Button>
+                </Button> */}
 
                 <ul className='mt-4 space-y-4'>
                     {data.budget > 0 && (
