@@ -1,3 +1,6 @@
+// ** Utils Imports
+import { genres } from '@/utils/genres'
+
 // ** Configs Imports
 import config from '@/configs/index'
 
@@ -55,4 +58,8 @@ export const getMediaType = (value: string, known_for?: string): string => {
     }
 
     return media_type[value] || known_for || 'Unknown'
+}
+
+export const getGenreName = (id: number, type: string): string => {
+    return genres.find((genre) => genre.id === id && genre.type === type)?.name || 'Movies'
 }

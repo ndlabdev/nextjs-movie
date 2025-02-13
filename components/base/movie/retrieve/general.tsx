@@ -15,10 +15,11 @@ import { IMovies } from '@/types/movies'
 
 // ** Interface
 interface Props {
+    isMovie?: boolean
     data: IMovies
 }
 
-export default function BaseMovieRetrieveGeneral({ data }: Props) {
+export default function BaseMovieRetrieveGeneral({ data, isMovie }: Props) {
     const { name, title, first_air_date, release_date, runtime, genres, tagline, overview, vote_average, credits } = data
 
     const filterCrewByDepartment = (department: string) =>
@@ -53,7 +54,7 @@ export default function BaseMovieRetrieveGeneral({ data }: Props) {
                 </div>
             </div>
 
-            {genres.length > 0 && <BaseMovieRetrieveChip isGenre data={genres} />}
+            {genres.length > 0 && <BaseMovieRetrieveChip isGenre data={genres} isMovie={isMovie} />}
 
             {tagline && <blockquote className="mt-4">“{tagline}”</blockquote>}
 

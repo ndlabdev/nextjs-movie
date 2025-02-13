@@ -30,7 +30,7 @@ export default function BaseMovieRetrieveContent({ type = 'movie' }: Props) {
                 </div>
 
                 <div className='flex-auto space-y-12'>
-                    <BaseMovieRetrieveGeneral data={data} />
+                    <BaseMovieRetrieveGeneral data={data} isMovie={isMovie} />
                     <BaseMovieRetrieveSeasons data={data} />
                     <BaseMovieRetrieveImages data={data} link={isMovie ? 'movies' : 'tv-series'} />
                     <BaseMovieRetrieveCast data={data} link={isMovie ? 'movies' : 'tv-series'} />

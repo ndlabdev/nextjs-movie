@@ -1,7 +1,7 @@
 'use client'
 
 // ** Next Imports
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { useRouter, usePathname, useSearchParams, useParams } from 'next/navigation'
 
 // ** HeroUI Imports
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, SharedSelection } from '@heroui/react'
@@ -11,6 +11,10 @@ import { useMemo } from 'react'
 
 // ** Icons Imports
 import { AlignLeft } from 'lucide-react'
+
+// ** Components Imports
+import BaseTitle from '@/components/base/title'
+import { getGenreName } from '@/utils/helpers'
 
 // ** Interface
 interface Props {
@@ -41,6 +45,7 @@ const sortTVOptions = [
 
 export default function DiscoverSort({ type }: Props) {
     const router = useRouter()
+    const params = useParams()
     const pathname = usePathname()
     const searchParams = useSearchParams()
 
@@ -67,31 +72,64 @@ export default function DiscoverSort({ type }: Props) {
     }
 
     return (
-        <div className='flex flex-shrink-0 items-center gap-1'>
-            <Dropdown>
-                <DropdownTrigger>
-                    <Button
-                        className='text-white'
-                        startContent={<AlignLeft size={20} />}
-                        variant='light'
-                    >
-                        {selectedValue}
-                    </Button>
-                </DropdownTrigger>
-
-                <DropdownMenu
-                    disallowEmptySelection
-                    aria-label="Movie Sort"
-                    selectedKeys={new Set([currentSort])}
-                    selectionMode="single"
-                    variant="flat"
-                    onSelectionChange={handleSelectionChange}
-                >
-                    {sortOptions.map((item) => (
-                        <DropdownItem key={item.key}>{item.label}</DropdownItem>
-                    ))}
-                </DropdownMenu>
-            </Dropdown>
-        </div>
+        <>
+            {(params.id && params.slug) ? (
+                <BaseTitle title={getGenreName(Number(params.id), params.slug as string)}>
+                    <div className='flex flex-shrink-0 items-center gap-1'>
+                        <Dropdown>
+                            <DropdownTrigger>
+                                <Button
+                                    className='text-white'
+                                    startContent={<AlignLeft size={20} />}
+                                    variant='light'
+                                >
+                                    {selectedValue}
+                                </Button>
+                            </DropdownTrigger>
+    
+                            <DropdownMenu
+                                disallowEmptySelection
+                                aria-label="Movie Sort"
+                                selectedKeys={new Set([currentSort])}
+                                selectionMode="single"
+                                variant="flat"
+                                onSelectionChange={handleSelectionChange}
+                            >
+                                {sortOptions.map((item) => (
+                                    <DropdownItem key={item.key}>{item.label}</DropdownItem>
+                                ))}
+                            </DropdownMenu>
+                        </Dropdown>
+                    </div>
+                </BaseTitle>
+            ) : (
+                <div className='flex flex-shrink-0 items-center gap-1'>
+                    <Dropdown>
+                        <DropdownTrigger>
+                            <Button
+                                className='text-white'
+                                startContent={<AlignLeft size={20} />}
+                                variant='light'
+                            >
+                                {selectedValue}
+                            </Button>
+                        </DropdownTrigger>
+    
+                        <DropdownMenu
+                            disallowEmptySelection
+                            aria-label="Movie Sort"
+                            selectedKeys={new Set([currentSort])}
+                            selectionMode="single"
+                            variant="flat"
+                            onSelectionChange={handleSelectionChange}
+                        >
+                            {sortOptions.map((item) => (
+                                <DropdownItem key={item.key}>{item.label}</DropdownItem>
+                            ))}
+                        </DropdownMenu>
+                    </Dropdown>
+                </div>
+            )}
+        </>
     )
 }

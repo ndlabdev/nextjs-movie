@@ -1,5 +1,8 @@
 'use client'
 
+// ** Next Imports
+import { useParams } from 'next/navigation'
+
 // ** HeroUI Imports
 import { Spinner } from '@heroui/react'
 
@@ -15,8 +18,9 @@ interface Props {
 }
 
 export default function BaseMovieShowInfinite({ type }: Props) {
+    const params = useParams()
     const { data, isFetching, isFetchingNextPage, observerRef } = useDiscoverMovie(type)
-    const link = type === 'movie' ? 'movies' : 'tv-series'
+    const link = (params.slug ?? type) === 'movie' ? 'movies' : 'tv-series'
 
     if (isFetching && !data) {
         return (

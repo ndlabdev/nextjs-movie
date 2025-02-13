@@ -1,7 +1,7 @@
 'use client'
 
 // ** Next Imports
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useParams } from 'next/navigation'
 
 // ** Third Party Imports
 import { useInfiniteQuery } from '@tanstack/react-query'
@@ -21,12 +21,13 @@ const queryKey = {
 }
 
 export const useDiscoverMovie = (type: 'movie' | 'tv') => {
+    const params = useParams()
     const searchParams = useSearchParams()
     const searchSort = searchParams.get('sort')
 
     const isMovie = type === 'movie'
     const key = isMovie ? queryKey.discoverMovie : queryKey.discoverTV
-    const url = isMovie ? '/discover/movie' : '/discover/tv'
+    const url = `/discover/${params.slug ?? (type === 'movie' ? 'movie' : 'tv')}`
 
     const {
         data,
@@ -35,11 +36,12 @@ export const useDiscoverMovie = (type: 'movie' | 'tv') => {
         isFetching,
         isFetchingNextPage
     } = useInfiniteQuery<IDiscoverMovie>({
-        queryKey: [key, searchSort],
+        queryKey: [key, searchSort, params],
         queryFn: ({ pageParam }) => returnFetch(url, {
             params: {
                 page: pageParam,
-                sort_by: searchSort
+                sort_by: searchSort,
+                ...(params.id && { with_genres: params.id })
             }
         })
             .then((response) => response.json()),
