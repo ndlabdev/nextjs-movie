@@ -53,7 +53,7 @@ export default function BaseMovieRetrieveGeneral({ data }: Props) {
                 </div>
             </div>
 
-            {genres.length > 0 && <BaseMovieRetrieveChip data={genres} />}
+            {genres.length > 0 && <BaseMovieRetrieveChip isGenre data={genres} />}
 
             {tagline && <blockquote className="mt-4">“{tagline}”</blockquote>}
 

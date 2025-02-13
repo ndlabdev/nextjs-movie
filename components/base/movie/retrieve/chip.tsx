@@ -11,16 +11,17 @@ import { Genre } from '@/types/movies'
 
 // ** Interface
 interface Props {
+    isGenre?: boolean
     data: Genre[]
 }
 
-export default function BaseMovieRetrieveChip({ data }: Props) {
+export default function BaseMovieRetrieveChip({ data, isGenre }: Props) {
     if (!data?.length) return null
 
     return (
         <div className="flex items-center gap-2 flex-wrap">
             {data.map(({ id, name }) => (
-                <Link key={id} href={`/people/${id}`}>
+                <Link key={id} href={`/${isGenre ? 'genre' : 'people'}/${id}`}>
                     <Chip size="sm">{name}</Chip>
                 </Link>
             ))}
