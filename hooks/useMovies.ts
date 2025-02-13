@@ -13,7 +13,7 @@ import { useQuery } from '@tanstack/react-query'
 import { returnFetch } from '@/lib/return-fetch'
 
 // ** Types Imports
-import { IMovies } from '@/types/movies'
+import { IMovies, SearchMovie } from '@/types/movies'
 
 const queryKey = {
     movieDetail: 'movie-detail',
@@ -35,9 +35,9 @@ export const useDiscoverDetail = (type: 'movie' | 'tv') => {
 }
 
 export const useMovieSearch = () => {
-    const [search, setSearch] = useState<string>('sonic')
+    const [search, setSearch] = useState<string>()
 
-    const data = useQuery<IMovies>({
+    const data = useQuery<SearchMovie>({
         queryKey: [queryKey.movieSearch, search],
         queryFn: () => returnFetch('/search/multi', {
             params: {

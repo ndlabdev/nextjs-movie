@@ -152,3 +152,7 @@ export interface SpokenLanguage {
     iso_639_1:    string;
     name:         string;
 }
+
+export interface SearchMovie {
+    results: (IMovies & Cast & { media_type: string })[];
+}
