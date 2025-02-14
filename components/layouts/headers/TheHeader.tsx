@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 // ** Components Imports
-import TheDropdownAuth from './TheDropdownAuth'
 import TheSearchMovie from './TheSearchMovie'
 
 const headerItem = [
@@ -15,10 +14,6 @@ const headerItem = [
         title: 'TV Series',
         href: '/tv-series'
     }
-    // {
-    //     title: 'Watchlist',
-    //     href: '/watchlist'
-    // }
 ]
 
 export default function TheHeader() {
@@ -36,9 +31,9 @@ export default function TheHeader() {
                         />
                     </Link>
 
-                    <TheSearchMovie />
+                    <div className='ml-auto flex items-center md:gap-8 gap-4 mx-3 text-sm'>
+                        <TheSearchMovie />
 
-                    <div className="flex gap-8 items-center mx-3 text-sm max-md:hidden">
                         {headerItem.map(item => (
                             <Link
                                 key={item.href}
@@ -48,10 +43,6 @@ export default function TheHeader() {
                                 {item.title}
                             </Link>
                         ))}
-                    </div>
-
-                    <div className='ml-auto flex items-center gap-1 md:gap-3'>
-                        <TheDropdownAuth />
                     </div>
                 </div>
             </div>
